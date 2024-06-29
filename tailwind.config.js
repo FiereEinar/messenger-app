@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -18,6 +19,14 @@ module.exports = {
     },
     extend: {
       colors: {
+        dark: {
+          DEFAULT: "#1c1e21",
+          100: "#242526",
+          200: "#3a3b3c",
+          300: "#3e4042",
+          400: "#65676b",
+          500: "#bcc0c4",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
