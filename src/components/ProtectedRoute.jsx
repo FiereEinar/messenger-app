@@ -7,13 +7,13 @@ export default function ProtectedRoute({ children }) {
 
 	useEffect(() => {
 		const bearerToken = localStorage.getItem('Token');
-		if (!bearerToken) navigate('/login');
+		if (!bearerToken) return navigate('/login');
 
 		const token = bearerToken.split(' ')[1];
-		if (!token) navigate('/login');
+		if (!token) return navigate('/login');
 
 		const user = jwtDecode(token).user;
-		if (!user) navigate('/login');
+		if (!user) return navigate('/login');
 	}, [navigate]);
 
 	return children;

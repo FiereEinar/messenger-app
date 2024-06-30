@@ -8,6 +8,31 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+/* CUSTOM SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	border-radius: 5px;
+	/* background: #f1f1f1; */
+	background: #bcc0c4;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 5px;
+	transition: all 0.3s ease;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;

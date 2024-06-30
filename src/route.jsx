@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Chats from './pages/Chats';
 import Groups from './pages/Groups';
 import DefaultPage from './pages/DefaultPage';
+import ChatSection from './components/ChatSection';
 
 export default function Route() {
 	const route = createBrowserRouter([
@@ -26,6 +27,10 @@ export default function Route() {
 						{
 							index: true,
 							element: <DefaultPage title='Chats' />,
+						},
+						{
+							path: '/chats/:friendID',
+							element: <ChatSection />,
 						},
 					],
 				},
