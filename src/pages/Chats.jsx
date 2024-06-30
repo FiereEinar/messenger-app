@@ -1,9 +1,15 @@
 import { fetchUserByID } from '@/api/user';
+import SearchUsersFeed from '@/components/SearchUsersFeed';
+import UsersFeed from '@/components/UsersFeed';
+import { useToast } from '@/components/ui/use-toast';
 import { useQuery } from '@tanstack/react-query';
-import _ from 'lodash';
-import { NavLink, Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 export default function Chats() {
+	const [addMode, setAddMode] = useState(false);
+
+	const { toast } = useToast();
 	const userID = localStorage.getItem('UserID');
 
 	const {
@@ -15,45 +21,46 @@ export default function Chats() {
 		queryFn: () => fetchUserByID(userID),
 	});
 
+	useEffect(() => {
+		if (error) {
+			toast({
+				variant: 'destructive',
+				title: 'Network error',
+				description: 'Failed to load chats',
+			});
+		}
+	}, [error, toast]);
+
 	return (
 		<section className='min-h-max w-full flex gap-3'>
-			<aside className='h-[96.5vh] w-[30rem] bg-dark-100 p-2 rounded-md flex flex-col gap-1 shadow-2xl'>
-				<h1 className='text-2xl font-semibold'>Chats</h1>
-				{/* LIST OF CHATS */}
-				<div className='mt-5'>
-					{isLoading && <p>Loading chats...</p>}
-					{error && <p>Error loading chats...</p>}
-					{!isLoading &&
-						userData.friends.map((friend) => (
-							<NavLink
-								to={friend._id}
-								className={navlinkClassCallback}
-								key={friend._id}
-							>
-								<img
-									className='size-10 rounded-full'
-									src={friend.profile.url}
-									alt='profile'
-								/>
-								<p>{_.startCase(`${friend.firstname} ${friend.lastname}`)}</p>
-							</NavLink>
-						))}
+			<aside className='h-[96.5vh] w-[30rem] bg-dark-100 p-3 rounded-md flex flex-col shadow-2xl'>
+				<div className='flex justify-between mb-3'>
+					<h1 className='text-2xl font-semibold flex items-center'>
+						{addMode ? 'Users' : 'Chats'}
+					</h1>
+					<button
+						onClick={() => setAddMode(!addMode)}
+						className='transition hover:bg-dark-300 rounded-full p-1'
+					>
+						<img
+							className='size-8'
+							src={`${addMode ? '/icons/close.svg' : '/icons/add.svg'}`}
+							alt=''
+						/>
+					</button>
 				</div>
+				{addMode ? (
+					<SearchUsersFeed />
+				) : (
+					<UsersFeed
+						users={userData?.friends}
+						isLoading={isLoading}
+						error={error}
+					/>
+				)}
 			</aside>
 
 			<Outlet />
 		</section>
 	);
 }
-
-const navlinkClassCallback = ({ isActive, isPending }) => {
-	const baseClass =
-		'transition flex justify-start items-center gap-2 p-2 rounded-md hover:bg-dark-200';
-	const navlinkClass = isPending
-		? 'text-gray-500'
-		: isActive
-		? 'bg-dark-200'
-		: '';
-
-	return `${navlinkClass} ${baseClass}`;
-};

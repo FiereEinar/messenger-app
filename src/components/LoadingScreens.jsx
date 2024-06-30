@@ -1,3 +1,15 @@
+import { Skeleton } from './ui/skeleton';
+
+export function UserCardLoading() {
+	return (
+		<div className='mt-3 flex flex-col gap-1'>
+			<Skeleton className='w-full h-14 rounded-md' />
+			<Skeleton className='w-full h-14 rounded-md' />
+			<Skeleton className='w-full h-14 rounded-md' />
+		</div>
+	);
+}
+
 export function DefaultButtonLoadingSpin() {
 	return (
 		<div className='flex gap-2'>

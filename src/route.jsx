@@ -8,6 +8,7 @@ import Chats from './pages/Chats';
 import Groups from './pages/Groups';
 import DefaultPage from './pages/DefaultPage';
 import ChatSection from './components/ChatSection';
+import Logout from './pages/Logout';
 
 export default function Route() {
 	const route = createBrowserRouter([
@@ -43,6 +44,10 @@ export default function Route() {
 							element: <DefaultPage title='Groups' />,
 						},
 					],
+				},
+				{
+					path: '/logout',
+					element: <Logout />,
 				},
 			],
 		},
