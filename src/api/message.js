@@ -19,7 +19,7 @@ export const postMessage = async (formData, senderID, receiverID) => {
 
     return data;
   } catch (err) {
-    console.error('Error fetching messages', err);
+    console.error('Error posting messages', err);
     throw err;
   }
 }

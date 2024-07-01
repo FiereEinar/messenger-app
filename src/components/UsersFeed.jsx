@@ -6,7 +6,7 @@ export default function UsersFeed({ users, isLoading, error }) {
 	return (
 		<div className='flex flex-col gap-1 overflow-auto'>
 			{isLoading && <UserCardLoading />}
-			{error && <p className='text-destructive'>Error loading chats</p>}
+			{error && <p className='text-destructive'>Failed to load users</p>}
 			{users &&
 				users.map((user) => (
 					<UserCard

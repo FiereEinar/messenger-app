@@ -37,7 +37,7 @@ export default function ChatSection() {
 	return (
 		<MainContentContainer>
 			{messagesLoading && friendLoading && (
-				<h1 className='text-5xl font-bold text-dark-500'>Loading...</h1>
+				<h1 className='text-5xl font-bold text-dark-500 p-3'>Loading...</h1>
 			)}
 			{messagesError && friendError && (
 				<h1 className='text-5xl font-bold text-dark-500'>An error occured</h1>

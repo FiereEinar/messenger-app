@@ -5,11 +5,13 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useToast } from '../ui/use-toast';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 
 export default function SendMessageForm() {
 	const { toast } = useToast();
 	const { friendID } = useParams();
 	const currentUserID = localStorage.getItem('UserID');
+	const [image, setImage] = useState(null);
 
 	const { refetch } = useQuery({
 		queryKey: [`messages_${currentUserID}_${friendID}`],
@@ -25,8 +27,13 @@ export default function SendMessageForm() {
 		resolver: zodResolver(messageValidation),
 	});
 
-	const onMessageSubmit = async (formData) => {
+	const onMessageSubmit = async (data) => {
 		try {
+			const formData = new FormData();
+
+			formData.append('message', data.message);
+			if (image) formData.append('image', image);
+
 			const result = await postMessage(formData, currentUserID, friendID);
 
 			if (!result.success) {
@@ -58,13 +65,22 @@ export default function SendMessageForm() {
 				type='text'
 			/>
 			<div className='flex gap-2'>
-				<button
-					disabled={isSubmitting}
-					type='button'
-					className='p-2 disabled:opacity-80 grid place-items-center border border-dark-300 rounded-full'
-				>
-					<img className='size-8' src='/icons/image.svg' alt='' />
-				</button>
+				<div className='relative cursor-pointer'>
+					<input
+						accept='image/*'
+						onChange={(e) => setImage(e.target.files[0])}
+						disabled={isSubmitting}
+						className='size-12 z-50 opacity-0 cursor-pointer border absolute'
+						type='file'
+					/>
+					<button
+						disabled={isSubmitting}
+						type='button'
+						className=' p-2 disabled:opacity-80 grid place-items-center border border-dark-300 rounded-full'
+					>
+						<img className='size-8' src='/icons/image.svg' alt='' />
+					</button>
+				</div>
 				<button
 					disabled={isSubmitting}
 					type='submit'

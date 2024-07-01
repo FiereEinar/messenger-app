@@ -10,6 +10,25 @@ export function UserCardLoading() {
 	);
 }
 
+export function MainContentLoadingScreen() {
+	return (
+		<section className='h-[96.5vh] bg-dark-100 rounded-md flex flex-col w-full shadow-2xl'>
+			<header className='border-b border-dark-200 p-3'>
+				<div className='flex gap-2 items-center'>
+					<Skeleton className='size-10 rounded-full' />
+					<Skeleton className='w-[15rem] h-10' />
+				</div>
+			</header>
+
+			<main className='flex-grow overflow-auto border-b border-dark-200 p-3 flex flex-col'>
+				<Skeleton className='w-[15rem] h-10' />
+				<Skeleton className='w-[15rem] h-10' />
+				<Skeleton className='w-[15rem] h-10' />
+			</main>
+		</section>
+	);
+}
+
 export function DefaultButtonLoadingSpin() {
 	return (
 		<div className='flex gap-2'>

@@ -31,6 +31,7 @@ export default function SearchUsersFeed() {
 		<div className='flex flex-col gap-3'>
 			<div>
 				<input
+					disabled={isLoading || error}
 					onChange={(e) => setSearchTerm(e.target.value)}
 					value={searchTerm}
 					className='w-full bg-dark-200 px-3 py-1 rounded-3xl'
