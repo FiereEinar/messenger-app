@@ -42,7 +42,7 @@ export default function ChatSection() {
 			{messagesError && friendError && (
 				<h1 className='text-5xl font-bold text-dark-500'>An error occured</h1>
 			)}
-			{!messagesLoading && !friendLoading && (
+			{friendData && messages && (
 				<>
 					<MainContentHeader
 						profile={friendData.profile.url}

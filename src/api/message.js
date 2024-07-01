@@ -4,7 +4,11 @@ const BASE_API_URL = import.meta.env.VITE_API_URL;
 
 export const fetchConversation = async (senderID, receiverID) => {
   try {
-    const { data } = await axios.get(`${BASE_API_URL}/message/${senderID}/${receiverID}`)
+    const { data } = await axios.get(`${BASE_API_URL}/message/${senderID}/${receiverID}`, {
+      headers: {
+        Authorization: localStorage.getItem('Token')
+      }
+    })
 
     return data.data;
   } catch (err) {
@@ -15,7 +19,11 @@ export const fetchConversation = async (senderID, receiverID) => {
 
 export const postMessage = async (formData, senderID, receiverID) => {
   try {
-    const { data } = await axios.post(`${BASE_API_URL}/message/${senderID}/${receiverID}`, formData);
+    const { data } = await axios.post(`${BASE_API_URL}/message/${senderID}/${receiverID}`, formData, {
+      headers: {
+        Authorization: localStorage.getItem('Token')
+      }
+    });
 
     return data;
   } catch (err) {
