@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchUserByID } from '@/api/user';
 import _ from 'lodash';
 import { Button } from './ui/button';
+import CoverPhoto from './CoverPhoto';
 
 export default function ProfileSection() {
 	const { userID } = useParams();
@@ -13,6 +14,7 @@ export default function ProfileSection() {
 		data: userData,
 		isLoading,
 		error,
+		refetch,
 	} = useQuery({
 		queryKey: [`user_${userID}`],
 		queryFn: () => fetchUserByID(userID),
@@ -30,20 +32,17 @@ export default function ProfileSection() {
 		<MainContentContainer>
 			{/* USER COVER AND PROFILE AREA */}
 			<div className='relative p-3'>
-				{/* cover photo */}
-				<div>
-					<img
-						className='w-full h-[12rem] object-cover object-center rounded-md'
-						src={
-							userData.cover.url.length > 0
-								? userData.cover.url
-								: '/default_cover.svg'
-						}
-						alt='Cover Photo'
-					/>
-					{/* empty space below cover photo */}
-					<div className='h-16'></div>
-				</div>
+				<CoverPhoto
+					refetch={refetch}
+					userID={userData._id}
+					imageURL={
+						userData.cover.url.length > 0
+							? userData.cover.url
+							: '/default_cover.svg'
+					}
+				/>
+				{/* empty space below cover photo */}
+				<div className='h-16'></div>
 				{/* profile photo */}
 				<div className='absolute bottom-3 left-6 size-[10rem]'>
 					<img
