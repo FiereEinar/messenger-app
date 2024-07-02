@@ -1,12 +1,11 @@
 import { useParams } from 'react-router-dom';
-import MainContentContainer from './MainContentContainer';
 import { useQuery } from '@tanstack/react-query';
 import { fetchConversation } from '@/api/message';
 import { fetchUserByID } from '@/api/user';
 import SendMessageForm from './forms/SendMessageForm';
 import { useEffect } from 'react';
 import ChatFeed from './ChatFeed';
-import MainContentHeader from './MainContentHeader';
+import MainContentHeader, { MainContentContainer } from './MainContent';
 
 export default function ChatSection() {
 	const { friendID } = useParams();
@@ -48,6 +47,7 @@ export default function ChatSection() {
 						profile={friendData.profile.url}
 						firstname={friendData.firstname}
 						lastname={friendData.lastname}
+						userID={friendData._id}
 					/>
 
 					<ChatFeed

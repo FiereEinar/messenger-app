@@ -4,6 +4,7 @@ import { fetchUsers } from '@/api/user';
 import { useEffect, useState } from 'react';
 
 export default function SearchUsersFeed() {
+	// const currentUserID = localStorage.getItem('UserID');
 	const [users, setUsers] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
 
@@ -11,6 +12,18 @@ export default function SearchUsersFeed() {
 		queryKey: [`users`],
 		queryFn: fetchUsers,
 	});
+
+	// useEffect(() => {
+	// 	if (!data) return;
+
+	// 	const filteredUsers = data.filter(
+	// 		(user) => user._id.toString() === currentUserID.toString()
+	// 	);
+	// 	console.log('filtering');
+	// 	console.log(data);
+	// 	console.log(currentUserID);
+	// 	setUsers(filteredUsers);
+	// }, [currentUserID, data]);
 
 	useEffect(() => {
 		if (!data && searchTerm.length === 0) return;
@@ -21,6 +34,7 @@ export default function SearchUsersFeed() {
 
 			if (fullname.includes(searchTerm) || username.includes(searchTerm))
 				return true;
+
 			return false;
 		});
 

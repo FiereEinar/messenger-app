@@ -20,6 +20,7 @@ import { deleteMessage, fetchConversation } from '@/api/message';
 import { useToast } from './ui/use-toast';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ChatMessage({ message, currentUserID, friendData }) {
 	const { toast } = useToast();
@@ -67,11 +68,13 @@ export default function ChatMessage({ message, currentUserID, friendData }) {
 			}`}
 		>
 			{message.sender !== currentUserID && (
-				<img
-					className='size-10 rounded-full'
-					src={friendData.profile.url}
-					alt=''
-				/>
+				<Link to={`/profile/${friendData._id}`}>
+					<img
+						className='size-10 rounded-full'
+						src={friendData.profile.url}
+						alt=''
+					/>
+				</Link>
 			)}
 
 			<div className='flex'>

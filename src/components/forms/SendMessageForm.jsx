@@ -29,6 +29,8 @@ export default function SendMessageForm() {
 
 	const onMessageSubmit = async (data) => {
 		try {
+			if (data.message.length === 0 && !image) return;
+
 			const formData = new FormData();
 
 			formData.append('message', data.message);

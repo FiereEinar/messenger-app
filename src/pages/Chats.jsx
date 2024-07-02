@@ -1,12 +1,20 @@
 import { fetchUserByID } from '@/api/user';
 import SearchUsersFeed from '@/components/SearchUsersFeed';
+import {
+	SecondarySidebarAside,
+	SecondarySidebarAsideHeader,
+	SecondarySidebarAsideHeaderText,
+	SecondarySidebarContainer,
+} from '@/components/Sidebar';
 import UsersFeed from '@/components/UsersFeed';
+import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export default function Chats() {
+	const navigate = useNavigate();
 	const [addMode, setAddMode] = useState(false);
 
 	const { toast } = useToast();
@@ -28,16 +36,33 @@ export default function Chats() {
 				title: 'Network error',
 				description: 'Failed to load chats',
 			});
+
+			// if the server responds with 'Unauthorized' even though there's a token, it means it is expired
+			if (
+				error.response.data === 'Unauthorized' &&
+				localStorage.getItem('Token')
+			) {
+				toast({
+					variant: 'destructive',
+					title: 'Expired Token Detected',
+					description: 'Login again to get new token',
+					action: (
+						<ToastAction onClick={() => navigate('/logout')} altText='Logout'>
+							Logout
+						</ToastAction>
+					),
+				});
+			}
 		}
-	}, [error, toast]);
+	}, [error, toast, navigate]);
 
 	return (
-		<section className='min-h-max w-full flex gap-3'>
-			<aside className='h-[96.5vh] w-[30rem] bg-dark-100 p-3 rounded-md flex flex-col shadow-2xl'>
-				<div className='flex justify-between mb-3'>
-					<h1 className='text-2xl font-semibold flex items-center'>
+		<SecondarySidebarContainer>
+			<SecondarySidebarAside>
+				<SecondarySidebarAsideHeader>
+					<SecondarySidebarAsideHeaderText>
 						{addMode ? 'Users' : 'Chats'}
-					</h1>
+					</SecondarySidebarAsideHeaderText>
 					<button
 						onClick={() => setAddMode(!addMode)}
 						className='transition hover:bg-dark-300 rounded-full p-1'
@@ -48,7 +73,8 @@ export default function Chats() {
 							alt=''
 						/>
 					</button>
-				</div>
+				</SecondarySidebarAsideHeader>
+				{/* SIDEBAR CONTENT */}
 				{addMode ? (
 					<SearchUsersFeed />
 				) : (
@@ -58,9 +84,10 @@ export default function Chats() {
 						error={error}
 					/>
 				)}
-			</aside>
+			</SecondarySidebarAside>
 
+			{/* MAIN CONTENT */}
 			<Outlet />
-		</section>
+		</SecondarySidebarContainer>
 	);
 }

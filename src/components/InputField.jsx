@@ -18,7 +18,7 @@ export function InputField({
 				{...register}
 				{...rest}
 				id={id}
-				className='rounded-sm p-1 px-2 bg-dark-200'
+				className='rounded-sm p-1 px-2 bg-dark-200 text-lg'
 				type={type}
 			/>
 			{error && <p className='text-red-500 text-sm'>{error.message}</p>}

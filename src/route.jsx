@@ -9,6 +9,10 @@ import Groups from './pages/Groups';
 import DefaultPage from './pages/DefaultPage';
 import ChatSection from './components/ChatSection';
 import Logout from './pages/Logout';
+import Profile from './pages/Profile';
+import ProfileSection from './components/ProfileSection';
+import ProfileEditSection from './components/ProfileEditSection';
+import { ChangePasswordSection } from './components/ProfileSections';
 
 export default function Route() {
 	const route = createBrowserRouter([
@@ -42,6 +46,24 @@ export default function Route() {
 						{
 							index: true,
 							element: <DefaultPage title='Groups' />,
+						},
+					],
+				},
+				{
+					path: '/profile',
+					element: <Profile />,
+					children: [
+						{
+							path: '/profile/changePassword',
+							element: <ChangePasswordSection />,
+						},
+						{
+							path: '/profile/:userID',
+							element: <ProfileSection />,
+						},
+						{
+							path: '/profile/edit/:userID',
+							element: <ProfileEditSection />,
 						},
 					],
 				},

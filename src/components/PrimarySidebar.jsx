@@ -1,21 +1,39 @@
-import SidebarNav from './SidebarNav';
+import { PrimarySidebarContainer, PrimarySidebarNav } from './Sidebar';
 
 export default function PrimarySidebar() {
+	const currentUserID = localStorage.getItem('UserID');
+
 	return (
-		<aside className='h-[96.5vh] bg-dark rounded-md flex flex-col justify-between'>
+		<PrimarySidebarContainer>
 			<div>
-				<SidebarNav linkTo='/global' icon='/icons/global.svg' title='Global' />
-				<SidebarNav linkTo='/chats' icon='/icons/message.svg' title='Chats' />
-				<SidebarNav linkTo='/groups' icon='/icons/groups.svg' title='Groups' />
+				<PrimarySidebarNav
+					linkTo='/global'
+					icon='/icons/global.svg'
+					title='Global'
+				/>
+				<PrimarySidebarNav
+					linkTo='/chats'
+					icon='/icons/message.svg'
+					title='Chats'
+				/>
+				<PrimarySidebarNav
+					linkTo='/groups'
+					icon='/icons/groups.svg'
+					title='Groups'
+				/>
 			</div>
 			<div>
-				<SidebarNav
-					linkTo='/profile'
+				<PrimarySidebarNav
+					linkTo={`/profile/${currentUserID}`}
 					icon='/icons/profile.svg'
 					title='Profile'
 				/>
-				<SidebarNav linkTo='/logout' icon='/icons/logout.svg' title='Logout' />
+				<PrimarySidebarNav
+					linkTo='/logout'
+					icon='/icons/logout.svg'
+					title='Logout'
+				/>
 			</div>
-		</aside>
+		</PrimarySidebarContainer>
 	);
 }
