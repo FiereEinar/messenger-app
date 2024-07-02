@@ -71,7 +71,12 @@ export default function ProfileEditForm({ userData }) {
 				<div className='flex justify-between'>
 					<h1 className='text-2xl font-semibold'>Profile Picture</h1>
 					<div className='relative overflow-hidden'>
-						<Button type='button' variant='secondary' size='sm'>
+						<Button
+							disabled={isSubmitting}
+							type='button'
+							variant='secondary'
+							size='sm'
+						>
 							<p className='font-semibold'>Edit</p>
 							<img
 								className='size-4 ml-2 mb-[1px]'
@@ -80,6 +85,7 @@ export default function ProfileEditForm({ userData }) {
 							/>
 						</Button>
 						<input
+							disabled={isSubmitting}
 							onChange={(e) => setProfilePicture(e.target.files[0])}
 							className='absolute border top-0 -left-[7rem] h-full opacity-0 cursor-pointer'
 							type='file'
@@ -101,7 +107,7 @@ export default function ProfileEditForm({ userData }) {
 			</div>
 
 			{/* other user data */}
-			<div className='flex p-3 w-full gap-5'>
+			<div className='flex p-3 w-full gap-5 flex-wrap'>
 				<div className='flex-1 flex flex-col gap-1'>
 					<InputField
 						register={{ ...register('firstname') }}

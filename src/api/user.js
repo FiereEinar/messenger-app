@@ -61,3 +61,18 @@ export const updateUserCoverPhoto = async (userID, formData) => {
     throw err;
   }
 }
+
+export const updateUserPassword = async (userID, formData) => {
+  try {
+    const { data } = await axios.put(`${BASE_API_URL}/user/${userID}/password`, formData, {
+      headers: {
+        Authorization: localStorage.getItem('Token')
+      }
+    });
+
+    return data;
+  } catch (err) {
+    console.error('Error updating password', err);
+    throw err;
+  }
+}

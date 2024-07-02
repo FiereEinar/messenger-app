@@ -72,6 +72,9 @@ export default function ProfileSection() {
 					</Button>
 				)}
 			</div>
+
+			{/* user friends */}
+			<div></div>
 		</MainContentContainer>
 	);
 }

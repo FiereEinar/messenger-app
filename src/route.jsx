@@ -12,7 +12,7 @@ import Logout from './pages/Logout';
 import Profile from './pages/Profile';
 import ProfileSection from './components/ProfileSection';
 import ProfileEditSection from './components/ProfileEditSection';
-import { ChangePasswordSection } from './components/ProfileSections';
+import { ChangePasswordSection } from './components/ChangePasswordSection';
 
 export default function Route() {
 	const route = createBrowserRouter([
@@ -54,16 +54,16 @@ export default function Route() {
 					element: <Profile />,
 					children: [
 						{
-							path: '/profile/changePassword',
-							element: <ChangePasswordSection />,
-						},
-						{
 							path: '/profile/:userID',
 							element: <ProfileSection />,
 						},
 						{
 							path: '/profile/edit/:userID',
 							element: <ProfileEditSection />,
+						},
+						{
+							path: '/profile/change/password/:userID',
+							element: <ChangePasswordSection />,
 						},
 					],
 				},
