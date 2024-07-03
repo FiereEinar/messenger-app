@@ -45,7 +45,7 @@ export default function LoginForm() {
 			toast({
 				title: 'Log in successfull!',
 			});
-			navigate('/');
+			navigate('/chats');
 		} catch (err) {
 			console.error('Error loggin in', err);
 			toast({

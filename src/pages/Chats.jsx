@@ -68,8 +68,8 @@ export default function Chats() {
 						className='transition hover:bg-dark-300 rounded-full p-1'
 					>
 						<img
-							className='size-8'
-							src={`${addMode ? '/icons/close.svg' : '/icons/add.svg'}`}
+							className={`transition size-8 ${addMode ? 'rotate-45' : ''}`}
+							src={'/icons/add.svg'}
 							alt=''
 						/>
 					</button>

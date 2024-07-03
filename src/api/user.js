@@ -60,7 +60,7 @@ export const updateUserCoverPhoto = async (userID, formData) => {
     console.error('Error updating cover photo', err);
     throw err;
   }
-}
+};
 
 export const updateUserPassword = async (userID, formData) => {
   try {
@@ -75,4 +75,19 @@ export const updateUserPassword = async (userID, formData) => {
     console.error('Error updating password', err);
     throw err;
   }
-}
+};
+
+export const fetchUserGroups = async (userID) => {
+  try {
+    const { data } = await axios.get(`${BASE_API_URL}/group/${userID}`, {
+      headers: {
+        Authorization: localStorage.getItem('Token')
+      }
+    });
+
+    return data.data;
+  } catch (err) {
+    console.error('Error updating password', err);
+    throw err;
+  }
+};

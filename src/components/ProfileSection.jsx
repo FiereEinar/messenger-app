@@ -5,6 +5,7 @@ import { fetchUserByID } from '@/api/user';
 import _ from 'lodash';
 import { Button } from './ui/button';
 import CoverPhoto from './CoverPhoto';
+import DefaultPage from '@/pages/DefaultPage';
 
 export default function ProfileSection() {
 	const { userID } = useParams();
@@ -21,11 +22,11 @@ export default function ProfileSection() {
 	});
 
 	if (isLoading) {
-		return <p>Loading...</p>;
+		return <DefaultPage title='Loading...' />;
 	}
 
 	if (error) {
-		return <p>Error fetching user</p>;
+		return <DefaultPage title='Error fetching user' />;
 	}
 
 	return (
