@@ -58,6 +58,7 @@ export default function Chats() {
 
 	return (
 		<SecondarySidebarContainer>
+			{/* SECONDARY SIDEBAR */}
 			<SecondarySidebarAside>
 				<SecondarySidebarAsideHeader>
 					<SecondarySidebarAsideHeaderText>

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { MainContentContainer } from './MainContent';
-import ChangePasswordForm from './forms/ChangePasswordForm';
+import { MainContentContainer } from '../MainContent';
+import ChangePasswordForm from '../forms/ChangePasswordForm';
 
-export function ChangePasswordSection() {
+export default function ChangePasswordSection() {
 	const navigate = useNavigate();
 	const userID = localStorage.getItem('UserID');
 

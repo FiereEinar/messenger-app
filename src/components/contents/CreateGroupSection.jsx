@@ -1,6 +1,6 @@
 import { fetchUserByID } from '@/api/user';
-import { MainContentContainer } from './MainContent';
-import CreateGroupForm from './forms/CreateGroupForm';
+import { MainContentContainer } from '../MainContent';
+import CreateGroupForm from '../forms/CreateGroupForm';
 import { useQuery } from '@tanstack/react-query';
 import DefaultPage from '@/pages/DefaultPage';
 

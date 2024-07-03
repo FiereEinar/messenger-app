@@ -1,10 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
-import { MainContentContainer } from './MainContent';
+import { MainContentContainer } from '../MainContent';
 import { useQuery } from '@tanstack/react-query';
 import { fetchUserByID } from '@/api/user';
 import _ from 'lodash';
-import { Button } from './ui/button';
-import CoverPhoto from './CoverPhoto';
+import { Button } from '../ui/button';
+import CoverPhoto from '../CoverPhoto';
 import DefaultPage from '@/pages/DefaultPage';
 
 export default function ProfileSection() {

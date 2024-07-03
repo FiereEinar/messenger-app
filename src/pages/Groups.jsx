@@ -1,11 +1,11 @@
 import { fetchUserGroups } from '@/api/user';
-import GroupsFeed from '@/components/GroupsFeed';
 import {
 	SecondarySidebarAside,
 	SecondarySidebarAsideHeader,
 	SecondarySidebarAsideHeaderText,
 	SecondarySidebarContainer,
 } from '@/components/Sidebar';
+import UsersFeed from '@/components/UsersFeed';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
@@ -25,6 +25,7 @@ export default function Groups() {
 
 	return (
 		<SecondarySidebarContainer>
+			{/* SECONDARY SIDEBAR */}
 			<SecondarySidebarAside>
 				<SecondarySidebarAsideHeader>
 					<SecondarySidebarAsideHeaderText>
@@ -44,7 +45,12 @@ export default function Groups() {
 				</SecondarySidebarAsideHeader>
 				{/* sidebar content */}
 
-				<GroupsFeed groups={userGroups} isLoading={isLoading} error={error} />
+				<UsersFeed
+					type='groups'
+					users={userGroups}
+					isLoading={isLoading}
+					error={error}
+				/>
 			</SecondarySidebarAside>
 
 			{/* MAIN CONTENT */}

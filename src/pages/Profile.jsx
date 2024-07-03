@@ -12,6 +12,7 @@ export default function Profile() {
 
 	return (
 		<SecondarySidebarContainer>
+			{/* SECONDARY SIDEBAR */}
 			<SecondarySidebarAside>
 				<SecondarySidebarAsideHeader>
 					<SecondarySidebarAsideHeaderText>

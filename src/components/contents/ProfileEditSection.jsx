@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { MainContentContainer } from './MainContent';
+import { MainContentContainer } from '../MainContent';
 import { fetchUserByID } from '@/api/user';
-import ProfileEditForm from './forms/ProfileEditForm';
+import ProfileEditForm from '../forms/ProfileEditForm';
 import DefaultPage from '@/pages/DefaultPage';
 
 export default function ProfileEditSection() {

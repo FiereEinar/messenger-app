@@ -2,8 +2,8 @@
 import _ from 'lodash';
 import { NavLink } from 'react-router-dom';
 
-export default function UserCard({
-	userID,
+export default function ProfileNavLink({
+	linkTo,
 	profileURL,
 	firstname,
 	lastname,
@@ -23,11 +23,11 @@ export default function UserCard({
 	};
 
 	return (
-		<NavLink to={`/chats/${userID}`} className={navlinkClassCallback}>
+		<NavLink to={linkTo} className={navlinkClassCallback}>
 			<img className='size-10 rounded-full' src={profileURL} alt='profile' />
 			<div className='flex flex-col'>
 				<p>{_.startCase(`${firstname} ${lastname}`)}</p>
-				<p className='text-xs text-dark-500'>@{username}</p>
+				{username && <p className='text-xs text-dark-500'>@{username}</p>}
 			</div>
 		</NavLink>
 	);

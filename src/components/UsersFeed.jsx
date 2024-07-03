@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { UserCardLoading } from './LoadingScreens';
-import UserCard from './UserCard';
+import ProfileNavLink from './ProfileNavLink';
 
-export default function UsersFeed({ users, isLoading, error }) {
+export default function UsersFeed({ users, isLoading, error, type = 'chats' }) {
 	return (
 		<div className='flex flex-col gap-1 overflow-auto'>
 			{isLoading && <UserCardLoading />}
@@ -15,13 +15,13 @@ export default function UsersFeed({ users, isLoading, error }) {
 			{users &&
 				users.length > 0 &&
 				users.map((user) => (
-					<UserCard
+					<ProfileNavLink
 						key={user._id}
-						userID={user._id}
+						linkTo={`/${type}/${user._id}`}
 						profileURL={user.profile.url}
-						firstname={user.firstname}
-						lastname={user.lastname}
-						username={user.username}
+						firstname={user.firstname || user.name}
+						lastname={user.lastname || ''}
+						username={user.username || null}
 					/>
 				))}
 		</div>
