@@ -15,10 +15,15 @@ export default function MainContentHeader({
 	firstname,
 	lastname,
 	userID,
+	type,
 }) {
 	return (
 		<header className='border-b border-dark-200 p-3'>
-			<div className='flex gap-2 items-center'>
+			<div
+				className={`flex gap-2 items-center ${
+					type !== 'user' ? 'pointer-events-none' : ''
+				}`}
+			>
 				<Link className='hover:underline' to={`/profile/${userID}`}>
 					<img className='size-10 rounded-full' src={profile} alt='' />
 				</Link>

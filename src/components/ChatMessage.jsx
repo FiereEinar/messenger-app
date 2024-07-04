@@ -20,16 +20,37 @@ import { deleteMessage, fetchConversation } from '@/api/message';
 import { useToast } from './ui/use-toast';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { fetchGroupConversation } from '@/api/group';
 
-export default function ChatMessage({ message, currentUserID, friendData }) {
+export default function ChatMessage({
+	message,
+	currentUserID,
+	friendData,
+	type,
+}) {
 	const { toast } = useToast();
+	const { groupID } = useParams();
 	const [isLoading, setIsLoading] = useState(false);
 
-	const { refetch } = useQuery({
-		queryKey: [`messages_${currentUserID}_${friendData._id}`],
-		queryFn: () => fetchConversation(currentUserID, friendData._id),
-	});
+	// we get the sender id based on type
+	// because if its a group, we need to get the sender data from the message itself not the friendData
+	const senderID = type === 'user' ? message.sender : message.sender._id;
+
+	// we need to call refetch() of either of these queries
+	const queryOpts = {
+		user: {
+			queryKey: [`messages_${currentUserID}_${friendData._id}`],
+			queryFn: () => fetchConversation(currentUserID, friendData._id),
+		},
+
+		group: {
+			queryKey: [`messages_${groupID}`],
+			queryFn: () => fetchGroupConversation(groupID),
+		},
+	};
+
+	const { refetch } = useQuery(queryOpts[type]);
 
 	const deleteMessageHandler = async (messageID) => {
 		try {
@@ -47,7 +68,7 @@ export default function ChatMessage({ message, currentUserID, friendData }) {
 
 			refetch();
 			toast({
-				title: 'Message deleted successfully!',
+				title: 'Message deleted',
 			});
 		} catch (err) {
 			console.error('Error deleting message', err);
@@ -62,23 +83,29 @@ export default function ChatMessage({ message, currentUserID, friendData }) {
 	};
 
 	return (
+		// align the message based on who's the sender
 		<div
 			className={`flex mb-2 gap-2 w-full ${
-				message.sender === currentUserID ? 'justify-end' : ''
+				senderID === currentUserID ? 'justify-end' : ''
 			}`}
 		>
-			{message.sender !== currentUserID && (
-				<Link to={`/profile/${friendData._id}`}>
+			{/* if it's not the user's message, we need to put the image of the sender */}
+			{senderID !== currentUserID && (
+				<Link to={`/profile/${type === 'user' ? friendData._id : senderID}`}>
 					<img
 						className='size-10 rounded-full'
-						src={friendData.profile.url}
+						src={
+							type === 'user'
+								? friendData.profile.url
+								: message.sender.profile.url
+						}
 						alt=''
 					/>
 				</Link>
 			)}
 
 			<div className='flex'>
-				{message.sender === currentUserID && (
+				{senderID === currentUserID && (
 					<>
 						<Menubar className='w-fit'>
 							<MenubarMenu>
@@ -120,7 +147,7 @@ export default function ChatMessage({ message, currentUserID, friendData }) {
 
 				<div
 					className={`flex flex-col gap-1 ${
-						message.sender === currentUserID ? 'items-end' : ''
+						senderID === currentUserID ? 'items-end' : ''
 					}`}
 				>
 					{message.message && (

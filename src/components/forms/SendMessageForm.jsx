@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { fetchConversation, postMessage } from '@/api/message';
 import { messageValidation } from '@/lib/validations/messageSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -6,17 +7,32 @@ import { useParams } from 'react-router-dom';
 import { useToast } from '../ui/use-toast';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { fetchGroupConversation, postGroupMessage } from '@/api/group';
 
-export default function SendMessageForm() {
+/**
+ *
+ * @param {'user' | 'group'} type either a user or group message
+ */
+export default function SendMessageForm({ type }) {
 	const { toast } = useToast();
-	const { friendID } = useParams();
+	const { friendID, groupID } = useParams();
 	const currentUserID = localStorage.getItem('UserID');
 	const [image, setImage] = useState(null);
 
-	const { refetch } = useQuery({
-		queryKey: [`messages_${currentUserID}_${friendID}`],
-		queryFn: () => fetchConversation(currentUserID, friendID),
-	});
+	// we need to call refetch() of either of these queries
+	const queryOpts = {
+		user: {
+			queryKey: [`messages_${currentUserID}_${friendID}`],
+			queryFn: () => fetchConversation(currentUserID, friendID),
+		},
+
+		group: {
+			queryKey: [`messages_${groupID}`],
+			queryFn: () => fetchGroupConversation(groupID),
+		},
+	};
+
+	const { refetch } = useQuery(queryOpts[type]);
 
 	const {
 		register,
@@ -36,7 +52,12 @@ export default function SendMessageForm() {
 			formData.append('message', data.message);
 			if (image) formData.append('image', image);
 
-			const result = await postMessage(formData, currentUserID, friendID);
+			let result = null;
+
+			if (type === 'user')
+				result = await postMessage(formData, currentUserID, friendID);
+			if (type === 'group')
+				result = await postGroupMessage(formData, currentUserID, groupID);
 
 			if (!result.success) {
 				toast({

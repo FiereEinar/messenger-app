@@ -1,62 +1,45 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { fetchConversation } from '@/api/message';
-import { fetchUserByID } from '@/api/user';
+/* eslint-disable react/prop-types */
 import SendMessageForm from '../forms/SendMessageForm';
-import { useEffect } from 'react';
 import ChatFeed from '../ChatFeed';
 import MainContentHeader, { MainContentContainer } from '../MainContent';
 
-export default function ChatSection() {
-	const { friendID } = useParams();
-	const currentUserID = localStorage.getItem('UserID');
-
-	const {
-		data: messages,
-		isLoading: messagesLoading,
-		error: messagesError,
-	} = useQuery({
-		queryKey: [`messages_${currentUserID}_${friendID}`],
-		queryFn: () => fetchConversation(currentUserID, friendID),
-	});
-
-	const {
-		data: friendData,
-		isLoading: friendLoading,
-		error: friendError,
-	} = useQuery({
-		queryKey: [`user_${friendID}`],
-		queryFn: () => fetchUserByID(friendID),
-	});
-
-	useEffect(() => {
-		window.scrollTo(1000, 0);
-	}, []);
-
+/**
+ *
+ * @param {'user' | 'group'} type either a user or group message
+ */
+export default function ChatSection({
+	messages,
+	chatMateData,
+	currentUserID,
+	isLoading,
+	error,
+	type,
+}) {
 	return (
 		<MainContentContainer>
-			{messagesLoading && friendLoading && (
+			{isLoading && (
 				<h1 className='text-5xl font-bold text-dark-500 p-3'>Loading...</h1>
 			)}
-			{messagesError && friendError && (
+			{error && (
 				<h1 className='text-5xl font-bold text-dark-500'>An error occured</h1>
 			)}
-			{friendData && messages && (
+			{chatMateData && messages && (
 				<>
 					<MainContentHeader
-						profile={friendData.profile.url}
-						firstname={friendData.firstname}
-						lastname={friendData.lastname}
-						userID={friendData._id}
+						profile={chatMateData.profile.url}
+						firstname={chatMateData.firstname || chatMateData.name}
+						lastname={chatMateData.lastname || ''}
+						userID={chatMateData._id}
 					/>
 
 					<ChatFeed
+						type={type}
 						messages={messages}
 						currentUserID={currentUserID}
-						friendData={friendData}
+						friendData={chatMateData}
 					/>
 
-					<SendMessageForm />
+					<SendMessageForm type={type} />
 				</>
 			)}
 		</MainContentContainer>

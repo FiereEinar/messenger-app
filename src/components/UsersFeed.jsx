@@ -9,7 +9,7 @@ export default function UsersFeed({ users, isLoading, error, type = 'chats' }) {
 			{error && <p className='text-destructive'>Failed to load users</p>}
 			{users && users.length === 0 && (
 				<p className='text-sm italic text-dark-500'>
-					You currently have no friends
+					{`You currently have no ${type === 'chats' ? 'friends' : 'groups'}`}
 				</p>
 			)}
 			{users &&
