@@ -56,10 +56,7 @@ export default function LoginForm() {
 	};
 
 	return (
-		<form
-			className='bg-dark-100 rounded-md shadow-md p-5 flex flex-col gap-3'
-			onSubmit={handleSubmit(loginHandler)}
-		>
+		<form className='flex flex-col gap-3' onSubmit={handleSubmit(loginHandler)}>
 			<InputField
 				register={{ ...register('username') }}
 				error={errors.username}

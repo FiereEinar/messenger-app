@@ -107,9 +107,11 @@ export default function ChatMessage({
 			)}
 
 			<div
-				className={`relative flex ${senderID !== currentUserID ? 'mt-5' : ''}`}
+				className={`relative flex ${
+					senderID !== currentUserID && type !== 'user' ? 'mt-5' : ''
+				}`}
 			>
-				{senderID !== currentUserID && (
+				{senderID !== currentUserID && type !== 'user' && (
 					<p className='absolute text-xs -top-5 left-3 text-dark-500'>
 						@{friendData.username || message.sender.username}
 					</p>

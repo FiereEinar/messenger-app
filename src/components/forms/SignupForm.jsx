@@ -55,23 +55,25 @@ export default function SignupForm() {
 
 	return (
 		<form
-			className='bg-dark-100 rounded-md shadow-md p-5 flex flex-col gap-3'
+			className='flex flex-col gap-3'
 			onSubmit={handleSubmit(signupHandler)}
 		>
-			<InputField
-				register={{ ...register('firstname') }}
-				error={errors.firstname}
-				label='First name: '
-				id='firstname'
-				type='text'
-			/>
-			<InputField
-				register={{ ...register('lastname') }}
-				error={errors.lastname}
-				label='Last name: '
-				id='lastname'
-				type='text'
-			/>
+			<div className='flex md:flex-nowrap flex-wrap gap-3'>
+				<InputField
+					register={{ ...register('firstname') }}
+					error={errors.firstname}
+					label='First name: '
+					id='firstname'
+					type='text'
+				/>
+				<InputField
+					register={{ ...register('lastname') }}
+					error={errors.lastname}
+					label='Last name: '
+					id='lastname'
+					type='text'
+				/>
+			</div>
 			<InputField
 				register={{ ...register('username') }}
 				error={errors.username}
@@ -95,7 +97,7 @@ export default function SignupForm() {
 			/>
 			<p className='text-xs'>
 				Already have have an account?{' '}
-				<Link className='underline' to='/signup'>
+				<Link className='underline' to='/login'>
 					Log in
 				</Link>{' '}
 			</p>

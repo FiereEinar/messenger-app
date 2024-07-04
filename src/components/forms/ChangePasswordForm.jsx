@@ -6,8 +6,10 @@ import { userPasswordUpdateValidation } from '@/lib/validations/userSchema';
 import { useForm } from 'react-hook-form';
 import { useToast } from '../ui/use-toast';
 import { updateUserPassword } from '@/api/user';
+import { useNavigate } from 'react-router-dom';
 
 export default function ChangePasswordForm({ userID }) {
+	const navigate = useNavigate();
 	const { toast } = useToast();
 	const {
 		register,
@@ -31,9 +33,11 @@ export default function ChangePasswordForm({ userID }) {
 
 			toast({
 				title: 'Password Updated',
-				description: 'Your password has been updated successfully',
+				description:
+					'You need to log in again after changing your password. Not for security but because theres a bug that the dev can not figure out',
 			});
 			reset();
+			navigate('/logout');
 		} catch (err) {
 			console.error('Error updating password', err);
 			toast({

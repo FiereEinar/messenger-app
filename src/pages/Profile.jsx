@@ -4,9 +4,10 @@ import {
 	SecondarySidebarAsideHeaderText,
 	SecondarySidebarContainer,
 } from '@/components/Sidebar';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useParams } from 'react-router-dom';
 
 export default function Profile() {
+	const navigate = useNavigate();
 	const { userID } = useParams();
 	const currentUserID = localStorage.getItem('UserID');
 
@@ -16,7 +17,12 @@ export default function Profile() {
 			<SecondarySidebarAside>
 				<SecondarySidebarAsideHeader>
 					<SecondarySidebarAsideHeaderText>
-						{userID === currentUserID ? 'Manage' : 'User'} Profile
+						<div className='flex justify-start items-center gap-1'>
+							<button onClick={() => navigate(-1)}>
+								<img className='size-7' src='/icons/back.svg' alt='b' />
+							</button>
+							<p>{userID === currentUserID ? 'Manage' : 'User'} Profile</p>
+						</div>
 					</SecondarySidebarAsideHeaderText>
 				</SecondarySidebarAsideHeader>
 
