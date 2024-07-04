@@ -19,7 +19,7 @@ export default function Global() {
 		isLoading: messagesLoading,
 		error: messagesError,
 	} = useQuery({
-		queryKey: [`messages_global`],
+		queryKey: [`messages_${groupID}`],
 		queryFn: () => fetchGroupConversation(groupID),
 	});
 
@@ -28,7 +28,7 @@ export default function Global() {
 		isLoading: groupLoading,
 		error: groupError,
 	} = useQuery({
-		queryKey: [`group_global`],
+		queryKey: [`group_${groupID}`],
 		queryFn: () => fetchGroupByID(groupID),
 	});
 

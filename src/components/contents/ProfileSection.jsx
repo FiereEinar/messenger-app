@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { Button } from '../ui/button';
 import CoverPhoto from '../CoverPhoto';
 import DefaultPage from '@/pages/DefaultPage';
+import { ProfileSectionLoadingScreen } from '../LoadingScreens';
 
 export default function ProfileSection() {
 	const { userID } = useParams();
@@ -22,7 +23,7 @@ export default function ProfileSection() {
 	});
 
 	if (isLoading) {
-		return <DefaultPage title='Loading...' />;
+		return <ProfileSectionLoadingScreen />;
 	}
 
 	if (error) {
@@ -45,9 +46,9 @@ export default function ProfileSection() {
 				{/* empty space below cover photo */}
 				<div className='h-16'></div>
 				{/* profile photo */}
-				<div className='absolute bottom-3 left-6 size-[10rem]'>
+				<div className='absolute bottom-3 left-6 !size-[10rem]'>
 					<img
-						className='rounded-full'
+						className='rounded-full object-cover object-center !size-[10rem]'
 						src={userData.profile.url}
 						alt='Profile'
 					/>

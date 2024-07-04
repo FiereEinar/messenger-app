@@ -91,58 +91,65 @@ export default function ChatMessage({
 		>
 			{/* if it's not the user's message, we need to put the image of the sender */}
 			{senderID !== currentUserID && (
-				<Link to={`/profile/${type === 'user' ? friendData._id : senderID}`}>
-					<img
-						className='size-10 rounded-full'
-						src={
-							type === 'user'
-								? friendData.profile.url
-								: message.sender.profile.url
-						}
-						alt=''
-					/>
-				</Link>
+				<div className='mt-auto'>
+					<Link to={`/profile/${type === 'user' ? friendData._id : senderID}`}>
+						<img
+							className='size-10 rounded-full'
+							src={
+								type === 'user'
+									? friendData.profile.url
+									: message.sender.profile.url
+							}
+							alt=''
+						/>
+					</Link>
+				</div>
 			)}
 
-			<div className='flex'>
+			<div
+				className={`relative flex ${senderID !== currentUserID ? 'mt-5' : ''}`}
+			>
+				{senderID !== currentUserID && (
+					<p className='absolute text-xs -top-5 left-3 text-dark-500'>
+						@{friendData.username || message.sender.username}
+					</p>
+				)}
 				{senderID === currentUserID && (
-					<>
-						<Menubar className='w-fit'>
-							<MenubarMenu>
-								<MenubarTrigger>
-									<img className='size-6' src='/icons/3_dots.svg' alt='' />
-								</MenubarTrigger>
-								<MenubarContent className='text-white'>
-									<Dialog>
-										<DialogTrigger asChild>
-											<button className='px-2 py-1.5'>Delete</button>
-										</DialogTrigger>
-										<DialogContent className='sm:max-w-[425px] bg-dark-300 border-none'>
-											<DialogHeader>
-												<DialogTitle className='text-white'>
-													Delete message
-												</DialogTitle>
-												<DialogDescription className='text-dark-500'>
-													Are you sure you want to delete this message?
-												</DialogDescription>
-											</DialogHeader>
-											<div className='grid gap-4 py-4'></div>
-											<DialogFooter>
-												<Button
-													disabled={isLoading}
-													onClick={() => deleteMessageHandler(message._id)}
-													variant='destructive'
-													type='submit'
-												>
-													Confirm
-												</Button>
-											</DialogFooter>
-										</DialogContent>
-									</Dialog>
-								</MenubarContent>
-							</MenubarMenu>
-						</Menubar>
-					</>
+					<Menubar className='w-fit'>
+						<MenubarMenu>
+							<MenubarTrigger>
+								<img className='size-6' src='/icons/3_dots.svg' alt='' />
+							</MenubarTrigger>
+							<MenubarContent className='text-white'>
+								<Dialog>
+									<DialogTrigger asChild>
+										<button className='px-2 py-1.5'>Delete</button>
+									</DialogTrigger>
+									<DialogContent className='sm:max-w-[425px] bg-dark-300 border-none'>
+										<DialogHeader>
+											<DialogTitle className='text-white'>
+												Delete message
+											</DialogTitle>
+											<DialogDescription className='text-dark-500'>
+												Are you sure you want to delete this message?
+											</DialogDescription>
+										</DialogHeader>
+										<div className='grid gap-4 py-4'></div>
+										<DialogFooter>
+											<Button
+												disabled={isLoading}
+												onClick={() => deleteMessageHandler(message._id)}
+												variant='destructive'
+												type='submit'
+											>
+												Confirm
+											</Button>
+										</DialogFooter>
+									</DialogContent>
+								</Dialog>
+							</MenubarContent>
+						</MenubarMenu>
+					</Menubar>
 				)}
 
 				<div
@@ -155,7 +162,7 @@ export default function ChatMessage({
 							{message.message}
 						</p>
 					)}
-					{message.image && (
+					{message.image?.url && (
 						<img
 							className='max-w-[18rem] rounded-3xl'
 							src={message.image.url}

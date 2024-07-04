@@ -112,20 +112,23 @@ export default function SendMessageForm({ type }) {
 				/>
 				<div className='flex gap-2'>
 					<div className='relative cursor-pointer'>
+						<label
+							htmlFor='image'
+							disabled={isSubmitting}
+							type='button'
+							className='cursor-pointer p-2 disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
+						>
+							<img className='size-8' src='/icons/image.svg' alt='' />
+						</label>
 						<input
 							accept='image/*'
 							onChange={(e) => setImage(e.target.files[0])}
 							disabled={isSubmitting}
-							className='size-12 z-50 opacity-0 cursor-pointer border absolute'
+							className='size-12 z-40 cursor-pointer border absolute'
 							type='file'
+							id='image'
+							hidden
 						/>
-						<button
-							disabled={isSubmitting}
-							type='button'
-							className=' p-2 disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
-						>
-							<img className='size-8' src='/icons/image.svg' alt='' />
-						</button>
 					</div>
 					<button
 						disabled={isSubmitting}

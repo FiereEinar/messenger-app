@@ -2,6 +2,7 @@
 import SendMessageForm from '../forms/SendMessageForm';
 import ChatFeed from '../ChatFeed';
 import MainContentHeader, { MainContentContainer } from '../MainContent';
+import { ChatContentLoadingScreen } from '../LoadingScreens';
 
 /**
  *
@@ -17,9 +18,7 @@ export default function ChatSection({
 }) {
 	return (
 		<MainContentContainer>
-			{isLoading && (
-				<h1 className='text-5xl font-bold text-dark-500 p-3'>Loading...</h1>
-			)}
+			{isLoading && <ChatContentLoadingScreen />}
 			{error && (
 				<h1 className='text-5xl font-bold text-dark-500'>An error occured</h1>
 			)}

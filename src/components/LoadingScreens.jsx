@@ -1,3 +1,4 @@
+import { MainContentContainer } from './MainContent';
 import { Skeleton } from './ui/skeleton';
 
 export function UserCardLoading() {
@@ -6,26 +7,118 @@ export function UserCardLoading() {
 			<Skeleton className='w-full h-14 rounded-md' />
 			<Skeleton className='w-full h-14 rounded-md' />
 			<Skeleton className='w-full h-14 rounded-md' />
+			<Skeleton className='w-full h-14 rounded-md' />
+			<Skeleton className='w-full h-14 rounded-md' />
 		</div>
 	);
 }
 
-export function MainContentLoadingScreen() {
+export function ChatContentLoadingScreen() {
 	return (
-		<section className='h-[96.5vh] bg-dark-100 rounded-md flex flex-col w-full shadow-2xl'>
+		<MainContentContainer>
 			<header className='border-b border-dark-200 p-3'>
 				<div className='flex gap-2 items-center'>
 					<Skeleton className='size-10 rounded-full' />
-					<Skeleton className='w-[15rem] h-10' />
+					<Skeleton className='w-[10rem] h-6' />
 				</div>
 			</header>
 
-			<main className='flex-grow overflow-auto border-b border-dark-200 p-3 flex flex-col'>
-				<Skeleton className='w-[15rem] h-10' />
-				<Skeleton className='w-[15rem] h-10' />
-				<Skeleton className='w-[15rem] h-10' />
+			<main className='flex-grow overflow-auto border-b border-dark-200 p-3 flex flex-col gap-3'>
+				<Skeleton className='w-[15rem] h-10 rounded-3xl self-end' />
+				<div className='flex gap-2'>
+					<Skeleton className='size-10 rounded-full' />
+					<Skeleton className='w-[15rem] h-10 rounded-3xl' />
+				</div>
+				<Skeleton className='w-[15rem] h-10 rounded-3xl self-end' />
+				<div className='flex gap-2'>
+					<Skeleton className='size-10 rounded-full' />
+					<Skeleton className='w-[15rem] h-20 rounded-3xl' />
+				</div>
+				<Skeleton className='w-[15rem] h-10 rounded-3xl self-end' />
+				<Skeleton className='w-[15rem] h-10 rounded-3xl self-end' />
+				<div className='flex gap-2'>
+					<Skeleton className='size-10 rounded-full' />
+					<Skeleton className='w-[15rem] h-10 rounded-3xl' />
+				</div>
 			</main>
-		</section>
+
+			<footer className='p-2 flex gap-3'>
+				<Skeleton className='flex-grow h-full rounded-3xl' />
+				<Skeleton className='size-12 rounded-full' />
+				<Skeleton className='size-12 rounded-full' />
+			</footer>
+		</MainContentContainer>
+	);
+}
+
+export function ProfileSectionLoadingScreen() {
+	return (
+		<MainContentContainer>
+			<div className='relative p-3'>
+				<Skeleton className='w-full h-[16rem]' />
+				<div className='h-16'></div>
+				<div className='absolute bottom-3 left-6 !size-[10rem]'>
+					<Skeleton className='rounded-full !size-[10rem]' />
+				</div>
+			</div>
+
+			<div className='px-6 flex justify-between items-start'>
+				<div>
+					<Skeleton className='w-[10rem] h-8 mb-2' />
+					<Skeleton className='w-[5rem] h-6 mb-6' />
+					<Skeleton className='w-[15rem] h-6' />
+				</div>
+				<Skeleton className='w-[7rem] h-10' />
+			</div>
+		</MainContentContainer>
+	);
+}
+
+export function ProfileEditLoadingScreen() {
+	return (
+		<MainContentContainer>
+			<div className='p-3'>
+				{/* profile picture */}
+				<div className='border-b border-dark-400 p-3'>
+					<div className='flex justify-between'>
+						<Skeleton className='w-[10rem] h-8 mb-2' />
+						<div className='relative overflow-hidden'>
+							<Skeleton className='w-[7rem] h-9' />
+						</div>
+					</div>
+					<div className='flex justify-center'>
+						<Skeleton className='size-[12rem] rounded-full' />
+					</div>
+				</div>
+
+				{/* other user data */}
+				<div className='flex p-3 w-full gap-5 flex-wrap text-dark-500'>
+					<div className='flex-1 flex flex-col gap-1'>
+						<InputFieldLoading />
+						<InputFieldLoading />
+						<InputFieldLoading />
+					</div>
+					<div className='flex-1 flex flex-col text-lg'>
+						<Skeleton className='w-[3rem] h-8 mb-2' />
+						<Skeleton className='w-full h-full mb-2' />
+					</div>
+				</div>
+
+				{/* submit button */}
+				<div className='p-3 flex justify-end'>
+					<Skeleton className='w-[7rem] h-10' />
+				</div>
+			</div>
+		</MainContentContainer>
+	);
+}
+
+function InputFieldLoading() {
+	return (
+		<div>
+			<Skeleton className='w-[6rem] h-5 mb-1' />
+			<Skeleton className='w-full h-9' />
+		</div>
 	);
 }
 

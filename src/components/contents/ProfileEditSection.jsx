@@ -3,6 +3,7 @@ import { MainContentContainer } from '../MainContent';
 import { fetchUserByID } from '@/api/user';
 import ProfileEditForm from '../forms/ProfileEditForm';
 import DefaultPage from '@/pages/DefaultPage';
+import { ProfileEditLoadingScreen } from '../LoadingScreens';
 
 export default function ProfileEditSection() {
 	const currentUserID = localStorage.getItem('UserID');
@@ -17,7 +18,7 @@ export default function ProfileEditSection() {
 	});
 
 	if (isLoading) {
-		return <DefaultPage title='Loading...' />;
+		return <ProfileEditLoadingScreen />;
 	}
 
 	if (error) {
