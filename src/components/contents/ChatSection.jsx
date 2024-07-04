@@ -15,6 +15,7 @@ export default function ChatSection({
 	isLoading,
 	error,
 	type,
+	showBackBtn = true,
 }) {
 	return (
 		<MainContentContainer>
@@ -25,6 +26,7 @@ export default function ChatSection({
 			{chatMateData && messages && (
 				<>
 					<MainContentHeader
+						showBackBtn={showBackBtn}
 						type={type}
 						profile={chatMateData.profile.url}
 						firstname={chatMateData.firstname || chatMateData.name}

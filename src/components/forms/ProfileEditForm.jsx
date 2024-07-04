@@ -8,6 +8,7 @@ import { userUpdateValidation } from '@/lib/validations/userSchema';
 import { useToast } from '../ui/use-toast';
 import { updateUser } from '@/api/user';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../BackButton';
 
 export default function ProfileEditForm({ userData }) {
 	const navigate = useNavigate();
@@ -65,11 +66,19 @@ export default function ProfileEditForm({ userData }) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onProfileUpdateSubmit)} className='p-3'>
+		<form
+			onSubmit={handleSubmit(onProfileUpdateSubmit)}
+			className='p-3 overflow-auto'
+		>
 			{/* profile picture */}
-			<div className='border-b border-dark-400 p-3'>
-				<div className='flex justify-between'>
-					<h1 className='text-2xl font-semibold'>Profile Picture</h1>
+			<div className='border-b border-dark-400 pb-3 sm:p-3'>
+				{/* back button for small devices */}
+				<div className='sm:hidden flex pb-2 border-b border-dark-400'>
+					<BackButton />
+				</div>
+				{/* profile pic section */}
+				<div className='flex justify-between items-center mb-3 py-3 sm:p-0'>
+					<h1 className='sm:text-2xl text-lg font-semibold'>Profile Picture</h1>
 					<div className='relative overflow-hidden'>
 						<Button
 							disabled={isSubmitting}
@@ -93,6 +102,7 @@ export default function ProfileEditForm({ userData }) {
 						/>
 					</div>
 				</div>
+				{/* profile pic preview */}
 				<div className='flex justify-center'>
 					<img
 						className='size-[12rem] rounded-full'
@@ -107,7 +117,7 @@ export default function ProfileEditForm({ userData }) {
 			</div>
 
 			{/* other user data */}
-			<div className='flex p-3 w-full gap-5 flex-wrap text-dark-500'>
+			<div className='flex sm:p-3 pt-3 w-full gap-5 flex-wrap text-dark-500'>
 				<div className='flex-1 flex flex-col gap-1'>
 					<InputField
 						register={{ ...register('firstname') }}
@@ -150,7 +160,7 @@ export default function ProfileEditForm({ userData }) {
 			</div>
 
 			{/* submit button */}
-			<div className='p-3 flex justify-end'>
+			<div className='mt-3 flex justify-end'>
 				<Button disabled={isSubmitting} type='submit' variant='secondary'>
 					Save Changes
 				</Button>

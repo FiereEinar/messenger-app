@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 export function PrimarySidebarContainer({ children }) {
 	return (
-		<aside className='h-[96.5vh] bg-dark rounded-md flex flex-col justify-between'>
+		// <aside className='md:h-[96.5vh] h-screen bg-dark rounded-md md:flex flex-col justify-between hidden'>
+		<aside className='md:h-[96.5vh] h-screen bg-dark rounded-md w-fit flex flex-col justify-between p-1 flex-shrink-0'>
 			{children}
 		</aside>
 	);
@@ -12,7 +13,7 @@ export function PrimarySidebarContainer({ children }) {
 export function PrimarySidebarNav({ linkTo, icon, title }) {
 	const navlinkClassCallback = ({ isActive, isPending }) => {
 		const baseClass =
-			'transition flex items-center justify-start gap-2 hover:bg-dark-200 px-2 py-2 pr-10 rounded-md mb-1';
+			'transition flex items-center justify-start gap-2 hover:bg-dark-200 p-2 lg:px-2 lg:py-2 lg:pr-10 rounded-md mb-1';
 		const navlinkClass = isPending
 			? 'text-gray-500'
 			: isActive
@@ -24,19 +25,23 @@ export function PrimarySidebarNav({ linkTo, icon, title }) {
 
 	return (
 		<NavLink to={linkTo} className={navlinkClassCallback}>
-			<img className='size-6' src={icon} alt='' />
-			<p className='font-semibold'>{title}</p>
+			<img className='!size-6' src={icon} alt='' />
+			<p className='font-semibold hidden lg:block'>{title}</p>
 		</NavLink>
 	);
 }
 
-export function SecondarySidebarContainer({ children }) {
-	return <section className='min-h-max w-full flex gap-3'>{children}</section>;
+export function SecondarySidebarAndMainContainer({ children }) {
+	return (
+		<section className='min-h-max w-full flex p-0 sm:p-1 md:p-0 gap-1 md:gap-3'>
+			{children}
+		</section>
+	);
 }
 
 export function SecondarySidebarAside({ children }) {
 	return (
-		<aside className='h-[96.5vh] w-[30rem] bg-dark-100 p-3 rounded-md flex flex-col shadow-2xl'>
+		<aside className='md:h-[96.5vh] h-full flex w-full sm:w-[20rem] flex-shrink-0 bg-dark-100 p-3 rounded-md  flex-col shadow-2xl'>
 			{children}
 		</aside>
 	);

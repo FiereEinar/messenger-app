@@ -1,60 +1,24 @@
-import { fetchUserGroups } from '@/api/user';
-import {
-	SecondarySidebarAside,
-	SecondarySidebarAsideHeader,
-	SecondarySidebarAsideHeaderText,
-	SecondarySidebarContainer,
-} from '@/components/Sidebar';
-import UsersFeed from '@/components/UsersFeed';
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { SecondarySidebarAndMainContainer } from '@/components/Sidebar';
+import GroupsSecondarySidebar from '@/components/secondarySidebars/GroupsSecondarySidebar';
+
+import { Outlet, useParams } from 'react-router-dom';
 
 export default function Groups() {
-	const [createMode, setCreateMode] = useState(false);
-	const userID = localStorage.getItem('UserID');
-
-	const {
-		data: userGroups,
-		isLoading,
-		error,
-	} = useQuery({
-		queryKey: [`user_${userID}_groups`],
-		queryFn: () => fetchUserGroups(userID),
-	});
+	const { groupID } = useParams();
 
 	return (
-		<SecondarySidebarContainer>
+		<SecondarySidebarAndMainContainer>
 			{/* SECONDARY SIDEBAR */}
-			<SecondarySidebarAside>
-				<SecondarySidebarAsideHeader>
-					<SecondarySidebarAsideHeaderText>
-						Groups
-					</SecondarySidebarAsideHeaderText>
-					<Link
-						className='transition hover:bg-dark-300 rounded-full p-1'
-						to={createMode ? -1 : '/groups/create'}
-						onClick={() => setCreateMode(!createMode)}
-					>
-						<img
-							className={`transition size-8 ${createMode ? 'rotate-45' : ''}`}
-							src='/icons/add.svg'
-							alt=''
-						/>
-					</Link>
-				</SecondarySidebarAsideHeader>
-				{/* sidebar content */}
-
-				<UsersFeed
-					type='groups/chats'
-					users={userGroups}
-					isLoading={isLoading}
-					error={error}
-				/>
-			</SecondarySidebarAside>
+			{/* hide this sidebar when viewing a chat in mobile */}
+			<div className={`sm:flex sm:w-fit w-full ${groupID ? 'hidden' : ''}`}>
+				<GroupsSecondarySidebar />
+			</div>
 
 			{/* MAIN CONTENT */}
-			<Outlet />
-		</SecondarySidebarContainer>
+			{/* hide this sidebar when NOT viewing a chat in mobile */}
+			<div className={`sm:flex w-full ${groupID ? 'flex' : 'hidden'}`}>
+				<Outlet />
+			</div>
+		</SecondarySidebarAndMainContainer>
 	);
 }

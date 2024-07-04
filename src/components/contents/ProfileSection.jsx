@@ -56,23 +56,34 @@ export default function ProfileSection() {
 			</div>
 
 			{/* USER FULLNAME AND USERNAME AREA */}
-			<div className='px-6 flex justify-between items-start'>
-				<div>
+			<div className='px-6 flex flex-wrap justify-between items-start'>
+				<div className='w-full sm:w-fit'>
 					<h2 className='text-2xl font-semibold'>
 						{_.startCase(`${userData.firstname} ${userData.lastname}`)}
 					</h2>
 					<p className='text-dark-500'>@{userData.username}</p>
 					<p className='pt-5 text-dark-500'>{userData.bio}</p>
 				</div>
-				{userData._id === currentUserID ? (
-					<Button variant='secondary'>
-						<Link to={`/profile/edit/${currentUserID}`}>Edit Profile</Link>
-					</Button>
-				) : (
-					<Button variant='secondary'>
-						<Link to={`/chats/${userID}`}>Send Message</Link>
-					</Button>
-				)}
+				<div className='mt-5 sm:mt-0 flex flex-wrap gap-3'>
+					{userData._id === currentUserID ? (
+						<>
+							<Button variant='secondary'>
+								<Link to={`/profile/edit/${currentUserID}`}>Edit Profile</Link>
+							</Button>
+							<div className='sm:hidden flex'>
+								<Button variant='secondary'>
+									<Link to={`/profile/change/password/${currentUserID}`}>
+										Change Password
+									</Link>
+								</Button>
+							</div>
+						</>
+					) : (
+						<Button variant='secondary'>
+							<Link to={`/chats/${userID}`}>Send Message</Link>
+						</Button>
+					)}
+				</div>
 			</div>
 
 			{/* user friends */}

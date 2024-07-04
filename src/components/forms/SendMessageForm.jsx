@@ -83,6 +83,7 @@ export default function SendMessageForm({ type }) {
 
 	return (
 		<div>
+			{/* image preview */}
 			{image && (
 				<div
 					className={`relative p-3 w-fit h-fit ${
@@ -94,6 +95,7 @@ export default function SendMessageForm({ type }) {
 						src={URL.createObjectURL(image)}
 						alt='image preview'
 					/>
+					{/* remove image button */}
 					<button
 						onClick={() => setImage(null)}
 						className='absolute size-6 top-0 right-0 bg-dark-300 rounded-full p-1'
@@ -104,22 +106,27 @@ export default function SendMessageForm({ type }) {
 			)}
 
 			<form onSubmit={handleSubmit(onMessageSubmit)} className='p-2 flex gap-2'>
+				{/* message */}
 				<input
 					{...register('message')}
 					disabled={isSubmitting}
-					className='bg-transparent flex-1 border border-dark-300 rounded-3xl px-4'
+					className='bg-transparent flex-1 border border-dark-300 rounded-3xl px-4 flex-shrink'
 					type='text'
 				/>
+				{/* image and send button */}
 				<div className='flex gap-2'>
+					{/* send image button */}
 					<div className='relative cursor-pointer'>
+						{/* custom label for image input */}
 						<label
 							htmlFor='image'
 							disabled={isSubmitting}
 							type='button'
-							className='cursor-pointer p-2 disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
+							className='cursor-pointer sm:p-2 p-[6px] disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
 						>
-							<img className='size-8' src='/icons/image.svg' alt='' />
+							<img className='sm:size-8 size-5' src='/icons/image.svg' alt='' />
 						</label>
+						{/* hidden input */}
 						<input
 							accept='image/*'
 							onChange={(e) => setImage(e.target.files[0])}
@@ -130,12 +137,13 @@ export default function SendMessageForm({ type }) {
 							hidden
 						/>
 					</div>
+					{/* send button */}
 					<button
 						disabled={isSubmitting}
 						type='submit'
-						className='p-2 disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
+						className='sm:p-2 p-[6px] disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
 					>
-						<img className='size-8' src='/icons/send.svg' alt='' />
+						<img className='sm:size-8 size-5' src='/icons/send.svg' alt='' />
 					</button>
 				</div>
 			</form>

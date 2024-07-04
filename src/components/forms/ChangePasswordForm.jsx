@@ -7,10 +7,12 @@ import { useForm } from 'react-hook-form';
 import { useToast } from '../ui/use-toast';
 import { updateUserPassword } from '@/api/user';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../BackButton';
 
 export default function ChangePasswordForm({ userID }) {
 	const navigate = useNavigate();
 	const { toast } = useToast();
+
 	const {
 		register,
 		handleSubmit,
@@ -47,13 +49,19 @@ export default function ChangePasswordForm({ userID }) {
 			});
 		}
 	};
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='p-3'>
 			{/* header */}
-			<div className='border-b border-dark-400 p-3'>
-				<div className='flex justify-between'>
-					<h1 className='text-2xl font-semibold'>Change Password</h1>
-					<div className='relative overflow-hidden'>
+			<div className='border-b border-dark-400 sm:p-3 pb-1'>
+				<div className='flex items-center gap-2 sm:gap-0 sm:justify-between'>
+					{/* back button for small devices */}
+					<div className='sm:hidden flex'>
+						<BackButton />
+					</div>
+					<h1 className='sm:text-2xl text-lg font-semibold'>Change Password</h1>
+					{/* save button for desktop */}
+					<div className='relative overflow-hidden sm:flex hidden'>
 						<Button
 							disabled={isSubmitting}
 							type='submit'
@@ -67,7 +75,7 @@ export default function ChangePasswordForm({ userID }) {
 			</div>
 
 			{/* input fields */}
-			<div className='p-3 flex flex-col gap-3 text-dark-500'>
+			<div className='sm:p-3 pt-3 flex flex-col gap-3 text-dark-500'>
 				<InputField
 					register={{ ...register('oldPassword') }}
 					error={errors.oldPassword}
@@ -92,6 +100,18 @@ export default function ChangePasswordForm({ userID }) {
 				{errors.root && (
 					<p className='text-red-500 text-sm'>{errors.root.message}</p>
 				)}
+				{/* save button for mobile */}
+				<div className='w-full justify-end overflow-hidden sm:hidden flex'>
+					<Button
+						disabled={isSubmitting}
+						type='submit'
+						className='py-1 px-5'
+						variant='secondary'
+						size='sm'
+					>
+						<p className='font-semibold'>Save</p>
+					</Button>
+				</div>
 			</div>
 		</form>
 	);

@@ -3,7 +3,7 @@ import {
 	SecondarySidebarAside,
 	SecondarySidebarAsideHeader,
 	SecondarySidebarAsideHeaderText,
-	SecondarySidebarContainer,
+	SecondarySidebarAndMainContainer,
 } from '@/components/Sidebar';
 import { useQuery } from '@tanstack/react-query';
 import ChatSection from '@/components/contents/ChatSection';
@@ -33,28 +33,33 @@ export default function Global() {
 	});
 
 	return (
-		<SecondarySidebarContainer>
+		<SecondarySidebarAndMainContainer>
 			{/* SECONDARY SIDEBAR */}
-			<SecondarySidebarAside>
-				<SecondarySidebarAsideHeader>
-					<SecondarySidebarAsideHeaderText>
-						Global Chat
-					</SecondarySidebarAsideHeaderText>
-				</SecondarySidebarAsideHeader>
-				{/* SIDEBAR CONTENT */}
-				{/* all users */}
-				<SearchUsersFeed />
-			</SecondarySidebarAside>
+			{/* hidden on mobile */}
+			<div className={`sm:flex sm:w-fit w-full ${groupID ? 'hidden' : ''}`}>
+				<SecondarySidebarAside>
+					<SecondarySidebarAsideHeader>
+						<SecondarySidebarAsideHeaderText>
+							Global Chat
+						</SecondarySidebarAsideHeaderText>
+					</SecondarySidebarAsideHeader>
+					{/* SIDEBAR CONTENT */}
+					<SearchUsersFeed />
+				</SecondarySidebarAside>
+			</div>
 
 			{/* MAIN CONTENT */}
-			<ChatSection
-				type='group'
-				messages={messages}
-				chatMateData={groupData}
-				currentUserID={currentUserID}
-				isLoading={messagesLoading || groupLoading}
-				error={messagesError || groupError}
-			/>
-		</SecondarySidebarContainer>
+			<div className={`flex w-full`}>
+				<ChatSection
+					type='group'
+					showBackBtn={false}
+					messages={messages}
+					chatMateData={groupData}
+					currentUserID={currentUserID}
+					isLoading={messagesLoading || groupLoading}
+					error={messagesError || groupError}
+				/>
+			</div>
+		</SecondarySidebarAndMainContainer>
 	);
 }

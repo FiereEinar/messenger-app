@@ -86,15 +86,15 @@ export default function ChatMessage({
 		// align the message based on who's the sender
 		<div
 			className={`flex mb-2 gap-2 w-full ${
-				senderID === currentUserID ? 'justify-end' : ''
+				senderID === currentUserID ? 'justify-end pl-6' : 'pr-6'
 			}`}
 		>
 			{/* if it's not the user's message, we need to put the image of the sender */}
 			{senderID !== currentUserID && (
-				<div className='mt-auto'>
+				<div className='mt-auto !size-8 sm:!size-10 flex-shrink-0'>
 					<Link to={`/profile/${type === 'user' ? friendData._id : senderID}`}>
 						<img
-							className='size-10 rounded-full'
+							className='!size-8 sm:!size-10 rounded-full'
 							src={
 								type === 'user'
 									? friendData.profile.url
@@ -111,11 +111,13 @@ export default function ChatMessage({
 					senderID !== currentUserID && type !== 'user' ? 'mt-5' : ''
 				}`}
 			>
+				{/* only show username if its a group message */}
 				{senderID !== currentUserID && type !== 'user' && (
 					<p className='absolute text-xs -top-5 left-3 text-dark-500'>
 						@{friendData.username || message.sender.username}
 					</p>
 				)}
+				{/* delete button for a message */}
 				{senderID === currentUserID && (
 					<Menubar className='w-fit'>
 						<MenubarMenu>
@@ -154,23 +156,27 @@ export default function ChatMessage({
 					</Menubar>
 				)}
 
-				<div
-					className={`flex flex-col gap-1 ${
-						senderID === currentUserID ? 'items-end' : ''
-					}`}
-				>
-					{message.message && (
-						<p className='w-fit bg-dark-200 py-2 px-4 rounded-3xl max-w-[22rem]'>
-							{message.message}
-						</p>
-					)}
-					{message.image?.url && (
-						<img
-							className='max-w-[18rem] rounded-3xl'
-							src={message.image.url}
-							alt=''
-						/>
-					)}
+				<div className='flex'>
+					<div
+						className={`flex flex-col gap-1 ${
+							senderID === currentUserID ? 'items-end' : ''
+						}`}
+					>
+						{message.message && (
+							<p className='bg-dark-200 py-2 px-4 rounded-3xl flex-shrink w-fit max-w-[22rem]'>
+								{message.message}
+							</p>
+						)}
+						{message.image?.url && (
+							<img
+								className='max-w-[18rem] w-[90%] rounded-3xl flex-shrink'
+								src={message.image.url}
+								alt=''
+							/>
+						)}
+					</div>
+					{/* spacing */}
+					{/* <div className='w-[5rem]'></div> */}
 				</div>
 			</div>
 		</div>
