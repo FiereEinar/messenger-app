@@ -107,7 +107,7 @@ export default function ProfileEditForm({ userData }) {
 			</div>
 
 			{/* other user data */}
-			<div className='flex p-3 w-full gap-5 flex-wrap'>
+			<div className='flex p-3 w-full gap-5 flex-wrap text-dark-500'>
 				<div className='flex-1 flex flex-col gap-1'>
 					<InputField
 						register={{ ...register('firstname') }}

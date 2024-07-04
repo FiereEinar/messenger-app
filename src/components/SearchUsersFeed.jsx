@@ -53,6 +53,7 @@ export default function SearchUsersFeed() {
 				/>
 			</div>
 			<UsersFeed
+				type='profile'
 				users={searchTerm.length === 0 ? data : users}
 				isLoading={isLoading}
 				error={error}

@@ -7,7 +7,7 @@ export default function PrimarySidebar() {
 		<PrimarySidebarContainer>
 			<div>
 				<PrimarySidebarNav
-					linkTo='/global'
+					linkTo={`/global/${import.meta.env.VITE_GLOBAL_ID}`}
 					icon='/icons/global.svg'
 					title='Global'
 				/>

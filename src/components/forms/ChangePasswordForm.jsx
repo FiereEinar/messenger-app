@@ -63,7 +63,7 @@ export default function ChangePasswordForm({ userID }) {
 			</div>
 
 			{/* input fields */}
-			<div className='p-3 flex flex-col gap-3'>
+			<div className='p-3 flex flex-col gap-3 text-dark-500'>
 				<InputField
 					register={{ ...register('oldPassword') }}
 					error={errors.oldPassword}

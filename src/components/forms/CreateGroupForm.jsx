@@ -9,6 +9,8 @@ import { Button } from '../ui/button';
 import { useToast } from '../ui/use-toast';
 import { postGroup } from '@/api/group';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { fetchUserByID } from '@/api/user';
 
 export default function CreateGroupForm({ userData }) {
 	const navigate = useNavigate();
@@ -16,6 +18,11 @@ export default function CreateGroupForm({ userData }) {
 	const [searchOutput, setSearchOutput] = useState([]);
 	const [selectedMembers, setSelectedMembers] = useState([]);
 	const [profilePicture, setProfilePicture] = useState(null);
+
+	const { refetch } = useQuery({
+		queryKey: [`user_${userData._id}`],
+		queryFn: () => fetchUserByID(userData._id),
+	});
 
 	const {
 		register,
@@ -85,7 +92,6 @@ export default function CreateGroupForm({ userData }) {
 			formData.append('groupProfile', profilePicture);
 
 			const result = await postGroup(formData);
-			console.log(result);
 			if (!result.success) {
 				toast({
 					variant: 'destructive',
@@ -99,6 +105,7 @@ export default function CreateGroupForm({ userData }) {
 				title: 'Group Created!',
 				description: 'The group has been successfully created',
 			});
+			refetch();
 			navigate('/groups');
 		} catch (err) {
 			console.error('Error updating user', err);

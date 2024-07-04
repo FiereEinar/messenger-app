@@ -19,6 +19,7 @@ import CreateGroupSection from './components/contents/CreateGroupSection';
 import ChangePasswordSection from './components/contents/ChangePasswordSection';
 import UserChat from './components/UserChat';
 import GroupChat from './components/GroupChat';
+import Global from './pages/Global';
 
 export default function Route() {
 	const route = createBrowserRouter([
@@ -34,6 +35,10 @@ export default function Route() {
 				{
 					index: true,
 					element: <Navigate to='/chats' />,
+				},
+				{
+					path: '/global/:groupID',
+					element: <Global />,
 				},
 				{
 					path: '/chats',

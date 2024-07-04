@@ -26,6 +26,7 @@ export default function ChatSection({
 			{chatMateData && messages && (
 				<>
 					<MainContentHeader
+						type={type}
 						profile={chatMateData.profile.url}
 						firstname={chatMateData.firstname || chatMateData.name}
 						lastname={chatMateData.lastname || ''}
