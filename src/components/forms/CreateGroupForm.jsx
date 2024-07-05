@@ -27,6 +27,7 @@ export default function CreateGroupForm({ userData }) {
 	const {
 		register,
 		handleSubmit,
+		setError,
 		formState: { errors, isSubmitting },
 	} = useForm({
 		resolver: zodResolver(createGroupValidation),
@@ -37,6 +38,10 @@ export default function CreateGroupForm({ userData }) {
 		if (searchTerm.length === 0) {
 			setSearchOutput([]);
 			return;
+		}
+
+		if (userData.friends.length === 0) {
+			setError('root', { message: 'You have no friends to add' });
 		}
 
 		const filteredFriends = userData.friends.filter((friend) => {
@@ -79,7 +84,7 @@ export default function CreateGroupForm({ userData }) {
 					variant: 'destructive',
 					title: 'Fill in the form',
 					description:
-						'Please select some group members, what is the point of creating a group if you are the only one in it?',
+						"Please select some group members, what's the point of creating a group if you're the only one in it?",
 				});
 				return;
 			}
@@ -197,6 +202,10 @@ export default function CreateGroupForm({ userData }) {
 					</div>
 				</div>
 			</div>
+
+			{errors.root && (
+				<p className='text-red-500 text-sm'>{errors.root.message}</p>
+			)}
 
 			{/* SELECTED MEMBERS LIST */}
 			<div className='max-h-[8rem] overflow-auto'>

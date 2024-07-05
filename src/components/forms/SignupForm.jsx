@@ -104,7 +104,17 @@ export default function SignupForm() {
 			{errors.root && (
 				<p className='text-red-500 text-sm'>{errors.root.message}</p>
 			)}
-			<div className='flex justify-end'>
+			<div className='flex justify-end gap-2'>
+				<Link to={`/global/${import.meta.env.VITE_GLOBAL_ID}`}>
+					<Button
+						disabled={isSubmitting}
+						variant='ghost'
+						type='button'
+						size='sm'
+					>
+						Global Chat
+					</Button>
+				</Link>
 				<Button
 					disabled={isSubmitting}
 					variant='secondary'

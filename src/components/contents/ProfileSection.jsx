@@ -38,7 +38,7 @@ export default function ProfileSection() {
 					refetch={refetch}
 					userID={userData._id}
 					imageURL={
-						userData.cover.url.length > 0
+						userData.cover?.url?.length > 0
 							? userData.cover.url
 							: '/default_cover.svg'
 					}

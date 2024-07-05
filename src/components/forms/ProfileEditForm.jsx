@@ -105,7 +105,7 @@ export default function ProfileEditForm({ userData }) {
 				{/* profile pic preview */}
 				<div className='flex justify-center'>
 					<img
-						className='size-[12rem] rounded-full'
+						className='size-[12rem] rounded-full object-cover object-center'
 						src={
 							profilePicture === null
 								? userData.profile.url

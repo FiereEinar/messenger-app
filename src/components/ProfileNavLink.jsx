@@ -24,7 +24,11 @@ export default function ProfileNavLink({
 
 	return (
 		<NavLink to={linkTo} className={navlinkClassCallback}>
-			<img className='size-10 rounded-full' src={profileURL} alt='profile' />
+			<img
+				className='size-10 rounded-full object-cover object-center'
+				src={profileURL}
+				alt='profile'
+			/>
 			<div className='flex flex-col'>
 				<p>{_.startCase(`${firstname} ${lastname}`)}</p>
 				{username && <p className='text-xs text-dark-500'>@{username}</p>}

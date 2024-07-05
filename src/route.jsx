@@ -26,11 +26,7 @@ export default function Route() {
 		{
 			path: '/',
 			errorElement: <NotFoundPage />,
-			element: (
-				<ProtectedRoute>
-					<App />
-				</ProtectedRoute>
-			),
+			element: <App />,
 			children: [
 				{
 					index: true,
@@ -42,7 +38,11 @@ export default function Route() {
 				},
 				{
 					path: '/chats',
-					element: <Chats />,
+					element: (
+						<ProtectedRoute>
+							<Chats />
+						</ProtectedRoute>
+					),
 					children: [
 						{
 							index: true,
@@ -56,7 +56,11 @@ export default function Route() {
 				},
 				{
 					path: '/groups',
-					element: <Groups />,
+					element: (
+						<ProtectedRoute>
+							<Groups />
+						</ProtectedRoute>
+					),
 					children: [
 						{
 							index: true,
@@ -74,7 +78,11 @@ export default function Route() {
 				},
 				{
 					path: '/profile',
-					element: <Profile />,
+					element: (
+						<ProtectedRoute>
+							<Profile />
+						</ProtectedRoute>
+					),
 					children: [
 						{
 							path: '/profile/:userID',

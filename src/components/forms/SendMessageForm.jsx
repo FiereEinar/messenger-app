@@ -109,7 +109,8 @@ export default function SendMessageForm({ type }) {
 				{/* message */}
 				<input
 					{...register('message')}
-					disabled={isSubmitting}
+					disabled={isSubmitting || !currentUserID}
+					placeholder={!currentUserID ? 'Login to send message' : ''}
 					className='bg-transparent flex-1 border border-dark-300 rounded-3xl px-4 flex-shrink'
 					type='text'
 				/>
@@ -120,7 +121,7 @@ export default function SendMessageForm({ type }) {
 						{/* custom label for image input */}
 						<label
 							htmlFor='image'
-							disabled={isSubmitting}
+							disabled={isSubmitting || !currentUserID}
 							type='button'
 							className='cursor-pointer sm:p-2 p-[6px] disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
 						>
@@ -130,7 +131,7 @@ export default function SendMessageForm({ type }) {
 						<input
 							accept='image/*'
 							onChange={(e) => setImage(e.target.files[0])}
-							disabled={isSubmitting}
+							disabled={isSubmitting || !currentUserID}
 							className='size-12 z-40 cursor-pointer border absolute'
 							type='file'
 							id='image'
@@ -139,7 +140,7 @@ export default function SendMessageForm({ type }) {
 					</div>
 					{/* send button */}
 					<button
-						disabled={isSubmitting}
+						disabled={isSubmitting || !currentUserID}
 						type='submit'
 						className='sm:p-2 p-[6px] disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
 					>
