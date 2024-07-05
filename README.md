@@ -2,6 +2,8 @@
 
 A full-stack messenger application designed to provide seamless communication.
 
+![app shocase](<public/app showcase.png>)
+
 Backend Code - [Github Repository](https://github.com/FiereEinar/messenger-app-backend)
 
 ## Features
@@ -38,12 +40,12 @@ Backend Code - [Github Repository](https://github.com/FiereEinar/messenger-app-b
 
 ### Frontend
 
-- [react-hook-form](https://www.npmjs.com/package/react-hook-form) Simplifies form states, errors, and validations.
-- [react-router-dom](https://reactrouter.com/en/main) Contains bindings for using React Router in web applications.
-- [zod](https://zod.dev/) Schema validation for forms.
-- [@tanstack/react-query](https://www.npmjs.com/package/react-query) Querying requests for better performance.
-- [axios](https://axios-http.com/docs/intro) A promise-based HTTP Client for node.js and the browser.
-- [date-fns](https://date-fns.org/docs/Getting-Started) Provides the most comprehensive, yet simple and consistent toolset for manipulating JavaScript dates
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form) – Simplifies form states, errors, and validations.
+- [react-router-dom](https://reactrouter.com/en/main) – Contains bindings for using React Router in web applications.
+- [zod](https://zod.dev/) – Schema validation for forms.
+- [@tanstack/react-query](https://www.npmjs.com/package/react-query) – Querying requests for better performance.
+- [axios](https://axios-http.com/docs/intro) – A promise-based HTTP Client for node.js and the browser.
+- [date-fns](https://date-fns.org/docs/Getting-Started) – Provides the most comprehensive, yet simple and consistent toolset for manipulating JavaScript dates
 
 ### Backend
 
