@@ -97,6 +97,7 @@ export default function SendMessageForm({ type }) {
 					/>
 					{/* remove image button */}
 					<button
+						disabled={isSubmitting}
 						onClick={() => setImage(null)}
 						className='absolute size-6 top-0 right-0 bg-dark-300 rounded-full p-1'
 					>

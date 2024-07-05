@@ -30,14 +30,21 @@ export default function GroupsSecondarySidebar() {
 				</SecondarySidebarAsideHeaderText>
 				<Link
 					className='transition hover:bg-dark-300 rounded-full p-1'
-					to={createMode ? -1 : '/groups/create'}
+					to={createMode ? '/groups' : '/groups/create'}
 					onClick={() => setCreateMode(!createMode)}
 				>
-					<img
-						className={`transition size-8 ${createMode ? 'rotate-45' : ''}`}
-						src='/icons/add.svg'
-						alt=''
-					/>
+					{/* for desktop */}
+					<div className='sm:flex hidden'>
+						<img
+							className={`transition size-8 ${createMode ? 'rotate-45' : ''}`}
+							src='/icons/add.svg'
+							alt=''
+						/>
+					</div>
+					{/* for mobile */}
+					<div className='sm:hidden flex'>
+						<img className={`transition size-8`} src='/icons/add.svg' alt='' />
+					</div>
 				</Link>
 			</SecondarySidebarAsideHeader>
 			{/* sidebar content */}

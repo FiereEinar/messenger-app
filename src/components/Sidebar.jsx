@@ -41,7 +41,7 @@ export function SecondarySidebarAndMainContainer({ children }) {
 
 export function SecondarySidebarAside({ children }) {
 	return (
-		<aside className='md:h-[96.5vh] h-full flex w-full sm:w-[20rem] flex-shrink-0 bg-dark-100 p-3 rounded-md  flex-col shadow-2xl'>
+		<aside className='md:h-[96.5vh] h-[99vh] overflow-auto flex w-full sm:w-[20rem] flex-shrink-0 bg-dark-100 p-3 rounded-md  flex-col shadow-2xl'>
 			{children}
 		</aside>
 	);

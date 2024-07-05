@@ -3,6 +3,7 @@ import { MainContentContainer } from '../MainContent';
 import CreateGroupForm from '../forms/CreateGroupForm';
 import { useQuery } from '@tanstack/react-query';
 import DefaultPage from '@/pages/DefaultPage';
+import BackButton from '../BackButton';
 
 export default function CreateGroupSection() {
 	const userID = localStorage.getItem('UserID');
@@ -26,7 +27,11 @@ export default function CreateGroupSection() {
 	return (
 		<MainContentContainer>
 			<section className='p-3'>
-				<div className='p-3 border-b border-dark-400'>
+				<div className='sm:p-3 pb-3 border-b border-dark-400 flex items-center gap-1'>
+					{/* back button for small devices */}
+					<div className='sm:hidden flex'>
+						<BackButton />
+					</div>
 					<h1 className='text-2xl font-semibold'>Create Group</h1>
 				</div>
 				<CreateGroupForm userData={userData} />

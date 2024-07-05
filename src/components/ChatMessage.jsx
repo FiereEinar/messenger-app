@@ -129,7 +129,7 @@ export default function ChatMessage({
 									<DialogTrigger asChild>
 										<button className='px-2 py-1.5'>Delete</button>
 									</DialogTrigger>
-									<DialogContent className='sm:max-w-[425px] bg-dark-300 border-none'>
+									<DialogContent className='sm:max-w-[425px] w-[90%] bg-dark-300 border-none rounded-md'>
 										<DialogHeader>
 											<DialogTitle className='text-white'>
 												Delete message
@@ -163,20 +163,18 @@ export default function ChatMessage({
 						}`}
 					>
 						{message.message && (
-							<p className='bg-dark-200 py-2 px-4 rounded-3xl flex-shrink w-fit max-w-[22rem]'>
+							<p className='bg-dark-200 py-2 px-4 rounded-2xl flex-shrink w-fit max-w-[22rem]'>
 								{message.message}
 							</p>
 						)}
 						{message.image?.url && (
 							<img
-								className='max-w-[18rem] w-[90%] rounded-3xl flex-shrink'
+								className='max-w-[18rem] w-[90%] rounded-2xl flex-shrink'
 								src={message.image.url}
 								alt=''
 							/>
 						)}
 					</div>
-					{/* spacing */}
-					{/* <div className='w-[5rem]'></div> */}
 				</div>
 			</div>
 		</div>
