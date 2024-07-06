@@ -16,6 +16,7 @@ export default function ChatSection({
 	error,
 	type,
 	showBackBtn = true,
+	refetch,
 }) {
 	return (
 		<MainContentContainer>
@@ -35,13 +36,14 @@ export default function ChatSection({
 					/>
 
 					<ChatFeed
+						refetch={refetch}
 						type={type}
 						messages={messages}
 						currentUserID={currentUserID}
 						friendData={chatMateData}
 					/>
 
-					<SendMessageForm type={type} />
+					<SendMessageForm refetch={refetch} type={type} />
 				</>
 			)}
 		</MainContentContainer>

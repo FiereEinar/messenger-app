@@ -18,6 +18,7 @@ export default function Global() {
 		data: messages,
 		isLoading: messagesLoading,
 		error: messagesError,
+		refetch,
 	} = useQuery({
 		queryKey: [`messages_${groupID}`],
 		queryFn: () => fetchGroupConversation(groupID),
@@ -51,6 +52,7 @@ export default function Global() {
 			{/* MAIN CONTENT */}
 			<div className={`flex w-full`}>
 				<ChatSection
+					refetch={refetch}
 					type='group'
 					showBackBtn={false}
 					messages={messages}

@@ -29,9 +29,9 @@ export default function PrimarySidebar() {
 					title='Profile'
 				/>
 				<PrimarySidebarNav
-					linkTo='/logout'
+					linkTo={currentUserID ? '/logout' : '/login'}
 					icon='/icons/logout.svg'
-					title='Logout'
+					title={currentUserID ? 'Logout' : 'Login'}
 				/>
 			</div>
 		</PrimarySidebarContainer>

@@ -6,6 +6,7 @@ export default function ChatFeed({
 	messages,
 	currentUserID,
 	friendData,
+	refetch,
 	type,
 }) {
 	const bottomRef = useRef(null);
@@ -24,6 +25,7 @@ export default function ChatFeed({
 
 			{messages.map((message) => (
 				<ChatMessage
+					refetch={refetch}
 					type={type}
 					key={message._id}
 					message={message}

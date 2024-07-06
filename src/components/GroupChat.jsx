@@ -11,6 +11,7 @@ export default function GroupChat() {
 		data: messages,
 		isLoading: messagesLoading,
 		error: messagesError,
+		refetch,
 	} = useQuery({
 		queryKey: [`messages_${groupID}`],
 		queryFn: () => fetchGroupConversation(groupID),
@@ -27,6 +28,7 @@ export default function GroupChat() {
 
 	return (
 		<ChatSection
+			refetch={refetch}
 			type='group'
 			messages={messages}
 			chatMateData={groupData}

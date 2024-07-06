@@ -16,41 +16,24 @@ import {
 	DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from './ui/button';
-import { deleteMessage, fetchConversation } from '@/api/message';
+import { deleteMessage } from '@/api/message';
 import { useToast } from './ui/use-toast';
-import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { fetchGroupConversation } from '@/api/group';
+import { Link } from 'react-router-dom';
 
 export default function ChatMessage({
 	message,
 	currentUserID,
 	friendData,
+	refetch,
 	type,
 }) {
 	const { toast } = useToast();
-	const { groupID } = useParams();
 	const [isLoading, setIsLoading] = useState(false);
 
 	// we get the sender id based on type
 	// because if its a group, we need to get the sender data from the message itself not the friendData
 	const senderID = type === 'user' ? message.sender : message.sender._id;
-
-	// we need to call refetch() of either of these queries
-	const queryOpts = {
-		user: {
-			queryKey: [`messages_${currentUserID}_${friendData._id}`],
-			queryFn: () => fetchConversation(currentUserID, friendData._id),
-		},
-
-		group: {
-			queryKey: [`messages_${groupID}`],
-			queryFn: () => fetchGroupConversation(groupID),
-		},
-	};
-
-	const { refetch } = useQuery(queryOpts[type]);
 
 	const deleteMessageHandler = async (messageID) => {
 		try {
