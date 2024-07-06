@@ -18,6 +18,10 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'custom-gradient-1': 'repeating-linear-gradient(135deg, #242526, #242526 5px, rgba(28, 30, 33, 0) 5px, rgba(28, 30, 33, 0) 20px)',
+        'custom-gradient-2': 'repeating-linear-gradient(135deg, #1c1e21, #1c1e21 5px, rgba(28, 30, 33, 0) 5px, rgba(28, 30, 33, 0) 20px)',
+      },
       colors: {
         dark: {
           DEFAULT: "#1c1e21",
