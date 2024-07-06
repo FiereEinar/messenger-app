@@ -105,3 +105,9 @@ body {
 		@apply bg-background text-foreground;
 	}
 }
+
+.text-wrap {
+	word-break: break-word;
+	overflow-wrap: anywhere;
+	hyphens: auto;
+}

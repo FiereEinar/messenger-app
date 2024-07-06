@@ -129,7 +129,7 @@ export default function CreateGroupForm({ userData }) {
 		>
 			{/* GROUP PROFILE PHOTO */}
 			<div className='border-b border-dark-400 pb-5'>
-				<div className='flex justify-between'>
+				<div className='flex justify-between items-center pb-3'>
 					<h1 className='text-lg'>Group Profile</h1>
 					<div className='relative overflow-hidden'>
 						<Button

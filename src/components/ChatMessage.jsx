@@ -146,7 +146,7 @@ export default function ChatMessage({
 						}`}
 					>
 						{message.message && (
-							<p className='bg-dark-200 py-2 px-4 rounded-2xl flex-shrink w-fit max-w-[22rem]'>
+							<p className='bg-dark-200 py-2 px-4 rounded-2xl flex-shrink w-fit max-w-[22rem] text-wrap'>
 								{message.message}
 							</p>
 						)}

@@ -96,13 +96,13 @@ export default function SendMessageForm({ type, refetch }) {
 					{...register('message')}
 					disabled={isSubmitting || !currentUserID}
 					placeholder={!currentUserID ? 'Login to send message' : ''}
-					className='bg-transparent flex-1 border border-dark-300 rounded-3xl px-4 flex-shrink'
+					className='bg-transparent flex-1 w-full border border-dark-300 rounded-3xl px-4 flex-shrink'
 					type='text'
 				/>
 				{/* image and send button */}
 				<div className='flex gap-2'>
 					{/* send image button */}
-					<div className='relative cursor-pointer'>
+					<div className='relative cursor-pointer flex-shrink-0'>
 						{/* custom label for image input */}
 						<label
 							htmlFor='image'
@@ -127,7 +127,7 @@ export default function SendMessageForm({ type, refetch }) {
 					<button
 						disabled={isSubmitting || !currentUserID}
 						type='submit'
-						className='sm:p-2 p-[6px] disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full'
+						className='sm:p-2 p-[6px] disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full flex-shrink-0'
 					>
 						<img className='sm:size-8 size-5' src='/icons/send.svg' alt='' />
 					</button>
