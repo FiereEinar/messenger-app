@@ -2,9 +2,21 @@
 
 A full-stack messenger application designed to provide seamless communication.
 
+Backend Code - [Github Repository](https://github.com/FiereEinar/messenger-app-backend)
+
 ![app shocase](<public/app showcase.png>)
 
-Backend Code - [Github Repository](https://github.com/FiereEinar/messenger-app-backend)
+# Signup page
+
+![alt text](public/signup.png)
+
+# Global Chat
+
+![alt text](public/global.png)
+
+# User Profile
+
+![alt text](public/profile.png)
 
 ## Features
 

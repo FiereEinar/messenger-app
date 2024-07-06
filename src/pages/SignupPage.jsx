@@ -1,6 +1,7 @@
 import SignupForm from '@/components/forms/SignupForm';
 import { HeaderLogo, RoundedLogo } from '@/components/ui/logo';
 import SlandtedSheet from '@/components/ui/slantedSheet';
+import Socials from '@/components/ui/socials';
 import Stripes from '@/components/ui/stripes';
 
 export default function SignupPage() {
@@ -21,6 +22,7 @@ export default function SignupPage() {
 			{/* DESIGNS */}
 			<SlandtedSheet />
 			<Stripes />
+			<Socials />
 		</main>
 	);
 }
