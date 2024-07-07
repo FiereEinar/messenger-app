@@ -52,6 +52,11 @@ export default function ProfileSection() {
 						src={userData.profile.url}
 						alt='Profile'
 					/>
+					<div
+						className={`absolute size-5 rounded-full bottom-3 right-3 ${
+							userData.isOnline ? 'bg-success' : 'bg-stale'
+						}`}
+					/>
 				</div>
 			</div>
 

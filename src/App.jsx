@@ -12,7 +12,7 @@ function App() {
 	useEffect(() => {
 		const fn = async () => {
 			if (currentUserID) {
-				updateUserStatus(currentUserID, { status: true });
+				await updateUserStatus(currentUserID, { status: true });
 			}
 		};
 		fn();

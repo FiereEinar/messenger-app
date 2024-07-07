@@ -102,7 +102,7 @@ export const updateUserStatus = async (userID, formData) => {
 
     return data;
   } catch (err) {
-    console.error('Error updating password', err);
+    console.error('Error updating user status', err);
     throw err;
   }
 }

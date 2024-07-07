@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export function PrimarySidebarContainer({ children }) {
 	return (
-		// <aside className='md:h-[96.5vh] h-screen bg-dark rounded-md md:flex flex-col justify-between hidden'>
-		<aside className='md:h-[96.5vh] h-screen bg-dark rounded-md w-fit flex flex-col justify-between p-1 md:p-0 flex-shrink-0'>
+		<aside className='md:h-[96.5vh] h-[100dvh] bg-dark rounded-md w-fit flex flex-col justify-between p-1 md:p-0 flex-shrink-0'>
 			{children}
 		</aside>
 	);
@@ -41,7 +40,7 @@ export function SecondarySidebarAndMainContainer({ children }) {
 
 export function SecondarySidebarAside({ children }) {
 	return (
-		<aside className='md:h-[96.5vh] h-[99vh] overflow-auto flex w-full sm:w-[20rem] flex-shrink-0 bg-dark-100 p-3 rounded-md  flex-col shadow-2xl'>
+		<aside className='md:h-[96.5dvh] h-[99dvh] overflow-auto flex w-full sm:w-[20rem] flex-shrink-0 bg-dark-100 p-3 rounded-md  flex-col shadow-2xl'>
 			{children}
 		</aside>
 	);

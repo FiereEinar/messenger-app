@@ -6,7 +6,7 @@ import Stripes from '@/components/ui/stripes';
 
 export default function SignupPage() {
 	return (
-		<main className='relative overflow-hidden w-full h-screen flex justify-center p-16 bg-dark text-dark-500'>
+		<main className='relative overflow-hidden w-full h-[100dvh] flex justify-center p-16 bg-dark text-dark-500'>
 			<div className='z-50 flex justify-center items-center md:gap-16'>
 				{/* sign up form */}
 				<section className='flex'>
