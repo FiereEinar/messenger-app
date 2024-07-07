@@ -20,6 +20,7 @@ export default function UsersFeed({ users, isLoading, error, type = 'chats' }) {
 				users.length > 0 &&
 				users.map((user) => (
 					<ProfileNavLink
+						isOnline={user.isOnline}
 						key={user._id}
 						linkTo={`/${type}/${user._id}`}
 						profileURL={user.profile.url}

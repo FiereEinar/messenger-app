@@ -31,6 +31,8 @@ module.exports = {
           400: "#65676b",
           500: "#bcc0c4",
         },
+        success: '#4CAF50',
+        stale: '#9E9E9E',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -13,18 +13,6 @@ export default function SearchUsersFeed() {
 		queryFn: fetchUsers,
 	});
 
-	// useEffect(() => {
-	// 	if (!data) return;
-
-	// 	const filteredUsers = data.filter(
-	// 		(user) => user._id.toString() === currentUserID.toString()
-	// 	);
-	// 	console.log('filtering');
-	// 	console.log(data);
-	// 	console.log(currentUserID);
-	// 	setUsers(filteredUsers);
-	// }, [currentUserID, data]);
-
 	useEffect(() => {
 		if (!data && searchTerm.length === 0) return;
 

@@ -91,3 +91,18 @@ export const fetchUserGroups = async (userID) => {
     throw err;
   }
 };
+
+export const updateUserStatus = async (userID, formData) => {
+  try {
+    const { data } = await axios.put(`${BASE_API_URL}/user/${userID}/status`, formData, {
+      headers: {
+        Authorization: localStorage.getItem('Token')
+      }
+    });
+
+    return data;
+  } catch (err) {
+    console.error('Error updating password', err);
+    throw err;
+  }
+}

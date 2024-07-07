@@ -8,6 +8,7 @@ export default function ProfileNavLink({
 	firstname,
 	lastname,
 	username,
+	isOnline,
 }) {
 	// classname for NavLink
 	const navlinkClassCallback = ({ isActive, isPending }) => {
@@ -24,11 +25,18 @@ export default function ProfileNavLink({
 
 	return (
 		<NavLink to={linkTo} className={navlinkClassCallback}>
-			<img
-				className='size-10 rounded-full object-cover object-center'
-				src={profileURL}
-				alt='profile'
-			/>
+			<div className='relative'>
+				<img
+					className='size-10 rounded-full object-cover object-center'
+					src={profileURL}
+					alt='profile'
+				/>
+				<div
+					className={`absolute size-3 rounded-full bottom-0 right-0 ${
+						isOnline ? 'bg-success' : 'bg-stale'
+					}`}
+				/>
+			</div>
 			<div className='flex flex-col'>
 				<p>{_.startCase(`${firstname} ${lastname}`)}</p>
 				{username && <p className='text-xs text-dark-500'>@{username}</p>}
