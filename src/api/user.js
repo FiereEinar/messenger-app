@@ -61,7 +61,7 @@ export const fetchUserGroups = async (userID) => {
 
     return data.data;
   } catch (err) {
-    console.error('Error updating password', err);
+    console.error('Error fetching user groups', err);
     throw err;
   }
 };

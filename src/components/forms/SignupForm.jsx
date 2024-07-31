@@ -6,10 +6,9 @@ import { useToast } from '../ui/use-toast';
 import { Button } from '../ui/button';
 import { DefaultButtonLoadingSpin } from '../LoadingScreens';
 import { signupSchema } from '@/lib/validations/authSchema';
-import axios from 'axios';
+import axiosInstance from '@/api/axiosInstance';
 
 export default function SignupForm() {
-	const BASE_API_URL = import.meta.env.VITE_API_URL;
 	const navigate = useNavigate();
 	const { toast } = useToast();
 
@@ -24,8 +23,8 @@ export default function SignupForm() {
 
 	const signupHandler = async (formData) => {
 		try {
-			const { data: result } = await axios.post(
-				`${BASE_API_URL}/auth/signup`,
+			const { data: result } = await axiosInstance.post(
+				`/auth/signup`,
 				formData
 			);
 
