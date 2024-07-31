@@ -1,14 +1,8 @@
-import axios from "axios";
-
-const BASE_API_URL = import.meta.env.VITE_API_URL;
+import axiosInstance from '../api/axiosInstance';
 
 export const fetchUserByID = async (userID) => {
   try {
-    const { data } = await axios.get(`${BASE_API_URL}/user/${userID}`, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.get(`/user/${userID}`);
 
     return data.data;
   } catch (err) {
@@ -19,11 +13,7 @@ export const fetchUserByID = async (userID) => {
 
 export const fetchUsers = async () => {
   try {
-    const { data } = await axios.get(`${BASE_API_URL}/user`, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.get(`/user`);
 
     return data.data;
   } catch (err) {
@@ -34,11 +24,7 @@ export const fetchUsers = async () => {
 
 export const updateUser = async (userID, formData) => {
   try {
-    const { data } = await axios.put(`${BASE_API_URL}/user/${userID}`, formData, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.put(`/user/${userID}`, formData);
 
     return data;
   } catch (err) {
@@ -49,11 +35,7 @@ export const updateUser = async (userID, formData) => {
 
 export const updateUserCoverPhoto = async (userID, formData) => {
   try {
-    const { data } = await axios.put(`${BASE_API_URL}/user/${userID}/cover`, formData, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.put(`/user/${userID}/cover`, formData);
 
     return data;
   } catch (err) {
@@ -64,11 +46,7 @@ export const updateUserCoverPhoto = async (userID, formData) => {
 
 export const updateUserPassword = async (userID, formData) => {
   try {
-    const { data } = await axios.put(`${BASE_API_URL}/user/${userID}/password`, formData, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.put(`/user/${userID}/password`, formData);
 
     return data;
   } catch (err) {
@@ -79,11 +57,7 @@ export const updateUserPassword = async (userID, formData) => {
 
 export const fetchUserGroups = async (userID) => {
   try {
-    const { data } = await axios.get(`${BASE_API_URL}/group/${userID}`, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.get(`/group/${userID}`);
 
     return data.data;
   } catch (err) {
@@ -94,11 +68,7 @@ export const fetchUserGroups = async (userID) => {
 
 export const updateUserStatus = async (userID, formData) => {
   try {
-    const { data } = await axios.put(`${BASE_API_URL}/user/${userID}/status`, formData, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.put(`/user/${userID}/status`, formData);
 
     return data;
   } catch (err) {

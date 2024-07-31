@@ -12,7 +12,6 @@ export default function Logout() {
 					await updateUserStatus(currentUserID, { status: false });
 				}
 
-				localStorage.removeItem('Token');
 				localStorage.removeItem('UserID');
 			} catch (error) {
 				console.error('Failed to update user status on logout:', error);

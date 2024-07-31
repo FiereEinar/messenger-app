@@ -12,6 +12,7 @@ function App() {
 	useEffect(() => {
 		const fn = async () => {
 			if (currentUserID) {
+				console.log(currentUserID);
 				await updateUserStatus(currentUserID, { status: true });
 			}
 		};

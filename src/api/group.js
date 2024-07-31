@@ -1,14 +1,8 @@
-import axios from "axios";
-
-const BASE_API_URL = import.meta.env.VITE_API_URL;
+import axiosInstance from '../api/axiosInstance';
 
 export const postGroup = async (formData) => {
   try {
-    const { data } = await axios.post(`${BASE_API_URL}/group`, formData, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    })
+    const { data } = await axiosInstance.post(`/group`, formData)
 
     return data;
   } catch (err) {
@@ -19,11 +13,7 @@ export const postGroup = async (formData) => {
 
 export const fetchGroupConversation = async (groupID) => {
   try {
-    const { data } = await axios.get(`${BASE_API_URL}/group/${groupID}/chats`, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    })
+    const { data } = await axiosInstance.get(`/group/${groupID}/chats`)
 
     return data.data;
   } catch (err) {
@@ -34,11 +24,7 @@ export const fetchGroupConversation = async (groupID) => {
 
 export const fetchGroupByID = async (groupID) => {
   try {
-    const { data } = await axios.get(`${BASE_API_URL}/group/${groupID}/info`, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    })
+    const { data } = await axiosInstance.get(`/group/${groupID}/info`)
 
     return data.data;
   } catch (err) {
@@ -49,11 +35,7 @@ export const fetchGroupByID = async (groupID) => {
 
 export const postGroupMessage = async (formData, senderID, groupID) => {
   try {
-    const { data } = await axios.post(`${BASE_API_URL}/group/chats/${senderID}/${groupID}`, formData, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.post(`/group/chats/${senderID}/${groupID}`, formData);
 
     return data;
   } catch (err) {

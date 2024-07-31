@@ -4,12 +4,11 @@ import { Button } from '../ui/button';
 import { useToast } from '../ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginValidation } from '@/lib/validations/authSchema';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { DefaultButtonLoadingSpin } from '../LoadingScreens';
+import axiosInstance from '@/api/axiosInstance';
 
 export default function LoginForm() {
-	const BASE_API_URL = import.meta.env.VITE_API_URL;
 	const navigate = useNavigate();
 	const { toast } = useToast();
 
@@ -24,10 +23,7 @@ export default function LoginForm() {
 
 	const loginHandler = async (data) => {
 		try {
-			const { data: result } = await axios.post(
-				`${BASE_API_URL}/auth/login`,
-				data
-			);
+			const { data: result } = await axiosInstance.post(`/auth/login`, data);
 
 			if (!result.success) {
 				setError('root', { message: result.message });
@@ -39,7 +35,6 @@ export default function LoginForm() {
 				return;
 			}
 
-			localStorage.setItem('Token', `Bearer ${result.data.token}`);
 			localStorage.setItem('UserID', result.data.userID);
 
 			toast({

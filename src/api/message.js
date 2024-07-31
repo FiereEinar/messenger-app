@@ -1,14 +1,8 @@
-import axios from "axios";
-
-const BASE_API_URL = import.meta.env.VITE_API_URL;
+import axiosInstance from '../api/axiosInstance';
 
 export const fetchConversation = async (senderID, receiverID) => {
   try {
-    const { data } = await axios.get(`${BASE_API_URL}/message/${senderID}/${receiverID}`, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    })
+    const { data } = await axiosInstance.get(`/message/${senderID}/${receiverID}`)
 
     return data.data;
   } catch (err) {
@@ -19,11 +13,7 @@ export const fetchConversation = async (senderID, receiverID) => {
 
 export const postMessage = async (formData, senderID, receiverID) => {
   try {
-    const { data } = await axios.post(`${BASE_API_URL}/message/${senderID}/${receiverID}`, formData, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.post(`/message/${senderID}/${receiverID}`, formData);
 
     return data;
   } catch (err) {
@@ -34,11 +24,7 @@ export const postMessage = async (formData, senderID, receiverID) => {
 
 export const deleteMessage = async (messageID) => {
   try {
-    const { data } = await axios.delete(`${BASE_API_URL}/message/${messageID}`, {
-      headers: {
-        Authorization: localStorage.getItem('Token')
-      }
-    });
+    const { data } = await axiosInstance.delete(`/message/${messageID}`);
 
     return data;
   } catch (err) {
