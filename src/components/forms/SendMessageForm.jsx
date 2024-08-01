@@ -92,12 +92,13 @@ export default function SendMessageForm({ type, refetch }) {
 
 			<form onSubmit={handleSubmit(onMessageSubmit)} className='p-2 flex gap-2'>
 				{/* message */}
-				<input
+				<textarea
 					{...register('message')}
 					disabled={isSubmitting || !currentUserID}
 					placeholder={!currentUserID ? 'Login to send message' : ''}
-					className='bg-transparent flex-1 w-full border border-dark-300 rounded-3xl px-4 flex-shrink'
-					type='text'
+					className='bg-transparent flex-1 w-full py-2 border border-dark-300 rounded-3xl px-4 flex-shrink'
+					rows={1}
+					// type='text'
 				/>
 				{/* image and send button */}
 				<div className='flex gap-2'>
@@ -127,7 +128,7 @@ export default function SendMessageForm({ type, refetch }) {
 					<button
 						disabled={isSubmitting || !currentUserID}
 						type='submit'
-						className='sm:p-2 p-[6px] disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full flex-shrink-0'
+						className='sm:p-2 h-fit p-[6px] disabled:opacity-70 grid place-items-center border border-dark-300 rounded-full flex-shrink-0'
 					>
 						<img className='sm:size-8 size-5' src='/icons/send.svg' alt='' />
 					</button>
