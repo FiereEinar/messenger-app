@@ -160,6 +160,9 @@ export default function ChatMessage({
 								alt=''
 							/>
 						)}
+						{/* <p className='text-xs ml-3 text-dark-500'>
+							at {format(message.dateSent, 'h aaa')}
+						</p> */}
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef } from 'react';
 import ChatMessage from './ChatMessage';
+import { format } from 'date-fns';
 
 export default function ChatFeed({
 	messages,
@@ -23,15 +24,22 @@ export default function ChatFeed({
 				</p>
 			)}
 
-			{messages.map((message) => (
-				<ChatMessage
-					refetch={refetch}
-					type={type}
-					key={message._id}
-					message={message}
-					currentUserID={currentUserID}
-					friendData={friendData}
-				/>
+			{messages.map((message, currentIndex, arr) => (
+				<div className='flex justify-center flex-col' key={message._id}>
+					{message.dateSent.split('T')[0] !==
+						arr[currentIndex - 1]?.dateSent.split('T')[0] && (
+						<p className='text-xs text-dark-500 m-auto my-5'>
+							{format(message.dateSent, 'MM/dd/yyyy')}
+						</p>
+					)}
+					<ChatMessage
+						refetch={refetch}
+						type={type}
+						message={message}
+						currentUserID={currentUserID}
+						friendData={friendData}
+					/>
+				</div>
 			))}
 			<div ref={bottomRef} />
 		</main>
