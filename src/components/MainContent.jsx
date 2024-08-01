@@ -5,7 +5,7 @@ import BackButton from './BackButton';
 
 export function MainContentContainer({ children }) {
 	return (
-		<section className='md:h-[96.5vh] sm:h-[99vh] h-[100dvh] bg-dark-100 rounded-md flex flex-col w-full shadow-2xl'>
+		<section className='md:h-[96.5vh] sm:h-[99vh] h-[90dvh] bg-dark-100 rounded-md flex flex-col w-full shadow-2xl'>
 			{children}
 		</section>
 	);

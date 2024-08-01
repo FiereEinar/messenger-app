@@ -5,7 +5,7 @@ export default function PrimarySidebar() {
 
 	return (
 		<PrimarySidebarContainer>
-			<div>
+			<div className='flex sm:flex-col h-fit'>
 				<PrimarySidebarNav
 					linkTo={`/global/${import.meta.env.VITE_GLOBAL_ID}`}
 					icon='/icons/global.svg'
@@ -22,7 +22,8 @@ export default function PrimarySidebar() {
 					title='Groups'
 				/>
 			</div>
-			<div>
+
+			<div className='flex sm:flex-col h-fit'>
 				<PrimarySidebarNav
 					linkTo={`/profile/${currentUserID}`}
 					icon='/icons/profile.svg'

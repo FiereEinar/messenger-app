@@ -20,7 +20,7 @@ function App() {
 	}, [currentUserID]);
 
 	return (
-		<main className='relative bg-dark min-h-screen w-full text-white flex md:p-3 md:gap-3'>
+		<main className='relative bg-dark min-h-screen w-full text-white flex flex-col-reverse sm:flex-row md:p-3 md:gap-3'>
 			<PrimarySidebar />
 			<Outlet />
 		</main>

@@ -10,7 +10,7 @@ export default function LoginPage() {
 			<div className='z-50 flex justify-center items-center md:gap-16'>
 				{/* sign up form */}
 				<section className='flex'>
-					<div className='relative md:w-[34rem] w-[22rem] p-10 flex flex-col gap-5 h-fit'>
+					<div className='relative md:w-[34rem] w-[20rem] p-10 flex flex-col gap-5 h-fit'>
 						<HeaderLogo />
 						<h1 className='text-3xl font-bold text-white'>Log in</h1>
 						<LoginForm />
