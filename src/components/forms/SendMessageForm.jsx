@@ -95,10 +95,10 @@ export default function SendMessageForm({ type, refetch }) {
 				<textarea
 					{...register('message')}
 					disabled={isSubmitting || !currentUserID}
+					style={{ resize: 'none' }}
 					placeholder={!currentUserID ? 'Login to send message' : ''}
 					className='bg-transparent flex-1 w-full py-2 border border-dark-300 rounded-3xl px-4 flex-shrink'
 					rows={1}
-					// type='text'
 				/>
 				{/* image and send button */}
 				<div className='flex gap-2'>
