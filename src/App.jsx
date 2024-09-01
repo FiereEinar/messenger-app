@@ -3,6 +3,7 @@ import PrimarySidebar from './components/PrimarySidebar';
 import useUserActivity from './hooks/useUserActivity';
 import { useEffect } from 'react';
 import { updateUserStatus } from './api/user';
+import MobileSidebar from './components/MobileSidebar';
 
 function App() {
 	const currentUserID = localStorage.getItem('UserID');
@@ -21,7 +22,12 @@ function App() {
 
 	return (
 		<main className='relative bg-dark min-h-screen w-full text-white flex flex-col-reverse sm:flex-row md:p-3 md:gap-3'>
-			<PrimarySidebar />
+			<div className='hidden sm:flex'>
+				<PrimarySidebar />
+			</div>
+			<div className='flex sm:hidden'>
+				<MobileSidebar />
+			</div>
 			<Outlet />
 		</main>
 	);
